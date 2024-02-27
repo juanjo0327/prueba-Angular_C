@@ -11,6 +11,7 @@ import { IProducto } from "../Inicio/models/productos";
 })
 
 export class ProductosServices {
+  //Se creo el proceso de obtener Productos
   api: string = '';
 
   constructor(private http: HttpClient) {
