@@ -56,6 +56,12 @@ namespace data.Data
                 }
             }
         }
+
+        ////Metodo para Regristrar productos en la BD
+        public static bool registrarProductos ()
+        {
+            return true;
+        }
         /*public static bool Registrar(Result oResult)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
