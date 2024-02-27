@@ -19,6 +19,7 @@ export class ProductosServices {
   }
 
   //obtener Productos
+  //Aqui se consume la url de la api https://localhost:7206/api
   obtenerProductos(): Observable<IProducto[]> {
     let url = `${this.api}/productos`;
 

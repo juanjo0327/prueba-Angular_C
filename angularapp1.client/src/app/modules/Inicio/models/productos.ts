@@ -1,7 +1,8 @@
 export interface IProducto {
   idProductos: number
   nombreProductos: string
-  tipoProducto_Id: number
+  nombreTipoProducto: string
   descripcion: string
   existencia: string
+  precio: string
 }

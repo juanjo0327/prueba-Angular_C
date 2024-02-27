@@ -14,12 +14,14 @@ namespace data.Data
 {
     public class productoData
     {
+        //Metodo para obtener los productos de la BD
         public static List<productos> Obtener()
         {
             
             List<productos> oListaProducto = new List<productos>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
+                //Stored Procedure de la api que se va a consumir
                 SqlCommand cmd = new SqlCommand("Obtener_Productos", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
@@ -35,9 +37,10 @@ namespace data.Data
                             {
                                 IdProductos = Convert.ToInt32(dr["Id"]),
                                 nombreProductos = (string)dr["NombreProducto"],
-                                tipoProducto_Id = Convert.ToInt32(dr["TipoProducto_Id"]),
+                                nombreTipoProducto = (string)dr["nombreTipoProducto"],
                                 descripcion = (string)dr["DescripcionProducto"],
-                                Existencia = Convert.ToInt32(dr["Existencia"])
+                                Existencia = Convert.ToInt32(dr["Existencia"]),
+                                Precio = Convert.ToInt32(dr["Precio"])
                             });
                         }
 

@@ -22,6 +22,7 @@ export class InicioComponent {
     this.productosService.obtenerProductos().subscribe({
       next: (result) => {
         this.productos = result;
+        console.log(this.productos);
       }
     })
   }
@@ -30,9 +31,10 @@ export class InicioComponent {
     {
       dato1: "Id",
       dato2: "nombre_Producto",
-      dato3: "tipo_Producto",
+      dato3: "nombreTipoProducto",
       dato4: "Descripcion",
-      dato5: "Existencia"
+      dato5: "Existencia",
+      dato6: "precio"
     }
   ]
 }

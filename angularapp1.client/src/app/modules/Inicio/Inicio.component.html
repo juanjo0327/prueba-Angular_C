@@ -11,15 +11,17 @@
         <th class="caja"><span>{{elemento.dato3}}</span></th>
         <th class="caja"><span>{{elemento.dato4}}</span></th> 
         <th class="caja"><span>{{elemento.dato5}}</span></th>
+        <th class="caja"><span>Precio</span></th>
       </tr>
     </thead>
     <tbody *ngFor="let producto of productos">
       <tr class="subEncabezados">
         <th class="caja"><span class="infotabla">{{producto.idProductos}}</span></th>
         <th class="caja"><span class="infotabla">{{producto.nombreProductos}}</span></th>
-        <th class="caja"><span class="infotabla">{{producto.tipoProducto_Id}}</span></th>
+        <th class="caja"><span class="infotabla">{{producto.nombreTipoProducto}}</span></th>
         <th class="caja"><span class="infotabla">{{producto.descripcion}}</span></th>
         <th class="caja"><span class="infotabla">{{producto.existencia}}</span></th>
+        <th class="caja"><span class="infotabla">${{producto.precio}}</span></th>
       </tr>
     </tbody>
 

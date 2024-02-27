@@ -14,9 +14,10 @@ namespace AngularApp1.Server.Models
         {
             public int IdProductos { get; set; }
             public string nombreProductos { get; set;}
-            public int tipoProducto_Id { get; set; }
+            public string nombreTipoProducto { get; set; }
             public string descripcion { get; set; }
             public int Existencia { get; set; } 
+            public int Precio { get; set;}
         }
     }
 }

@@ -8,10 +8,10 @@ using static AngularApp1.Server.Models.Producto;
 namespace Ejemplo_prueba.Controllers
 {
     [Route("/api/productos")]
-    //[ApiController]
     public class productoController : Controller
     {
         [HttpGet]
+        //Aqui inicia el metodo para obtener los productos
         public List<productos> Get()
         {
             return productoData.Obtener();
