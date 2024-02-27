@@ -1,0 +1,29 @@
+<div class="container" style="width: 90%">
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-8">
+
+    <div class="col-3">
+      <div class="col-2" style="display:inline-block">
+      </div>
+      <div class="col-3 cardInicio">
+        <a class="navbar-brand opciones inicio" [routerLink]="['/inicio']">Inicio</a>
+      </div>
+    </div>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end col-4">
+      <ul class="navbar-nav flex-grow">
+        <li class="nav-item opciones">
+          <a class="nav-link text-dark" [routerLink]="['/inicio']">Obtener</a>
+        </li>
+        <li class="nav-item opciones">
+          <a class="nav-link text-dark" id="agregar" [routerLink]="['/agregar']">Agregar</a>
+        </li>
+        <li class="nav-item opciones">
+          <a class="nav-link text-dark" id="" [routerLink]="['/modificar']">Modificar o Eliminar</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<div class=" block" style="width:100%">
+  <router-outlet></router-outlet>
+</div>

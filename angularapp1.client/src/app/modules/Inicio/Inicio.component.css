@@ -1,0 +1,35 @@
+.tabla {
+  margin-top: 30px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-left: 25px;
+  border-color: orange;
+  border: 3px solid orange;
+}
+
+.encabezados {
+  width: 100%;
+  height: 60px;
+  border-bottom: 3px solid orange;
+}
+
+span {
+  color: chocolate;
+  font-size: 18px;
+}
+
+.caja {
+  width: 10%;
+  border-top: 1px solid orange;
+  border-left: 1px solid orange;
+  padding-left: 20px;
+}
+
+.subEncabezados {
+  height: 60px;
+  border: 3px solid orange;
+}
+
+.infotabla {
+  color: darkcyan;
+}

@@ -1,0 +1,41 @@
+a.navbar-brand {
+  display:flex;
+}
+
+.block {
+  display:block;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.opciones {
+  border-radius: 3px;
+}
+
+.inicio {
+  width: 100%;
+  justify-content: center
+}
+
+.opciones:hover {
+  background-color: rgb(255, 106, 0, 0.63);
+  cursor: pointer
+}
+
+
+.cardInicio {
+  display: inline-block;
+}
+

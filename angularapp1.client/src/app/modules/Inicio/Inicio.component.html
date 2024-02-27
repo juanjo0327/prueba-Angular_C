@@ -1,0 +1,28 @@
+<h1>Obtener Productos</h1>
+
+
+<div style="width:95%; align-content:center" *ngFor="let elemento of lstDatos">
+
+  <table class="tabla">
+    <thead>
+      <tr class="encabezados">
+        <th class="caja"><span>{{elemento.dato1}}</span></th>
+        <th class="caja"><span>{{elemento.dato2}}</span></th>
+        <th class="caja"><span>{{elemento.dato3}}</span></th>
+        <th class="caja"><span>{{elemento.dato4}}</span></th> 
+        <th class="caja"><span>{{elemento.dato5}}</span></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let producto of productos">
+      <tr class="subEncabezados">
+        <th class="caja"><span class="infotabla">{{producto.idProductos}}</span></th>
+        <th class="caja"><span class="infotabla">{{producto.nombreProductos}}</span></th>
+        <th class="caja"><span class="infotabla">{{producto.tipoProducto_Id}}</span></th>
+        <th class="caja"><span class="infotabla">{{producto.descripcion}}</span></th>
+        <th class="caja"><span class="infotabla">{{producto.existencia}}</span></th>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
