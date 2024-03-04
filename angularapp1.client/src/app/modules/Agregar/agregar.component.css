@@ -15,7 +15,7 @@ body {
 }
 
 .card {
-  width: 210px;
+  width: 18.5%;
   height: 110px;
   margin-left: 8px;
   margin-top: 20px;
@@ -28,7 +28,7 @@ p {
 }
 
 input {
-  width: 185px;
+  width: 95%;
   color: black;
   font-weight: bold;
   border: 3px solid rgb(42, 0, 255, 0.57);
@@ -61,6 +61,49 @@ input {
   color: rgb(42, 0, 255, 0.57);
 }
 
+.tipoProducto2 {
+  visibility: collapse;
+}
+
+.div2 {
+  display: none;
+}
+
 button:hover {
   background-color: rgb(0, 201, 207, 0.58);
+}
+@media screen and (max-width: 60px) {
+  .formulario{
+      align-items:center;
+      align-content: center;
+      justify-content:center;
+  }
+
+  .card_global {
+    width: 80%;
+  }
+  .div_cards {
+    border: 1px solid red;
+  }
+
+  .card_global {
+    height: 350px;
+  }
+  .tipoProducto2 {
+      visibility: revert;
+  }
+
+  .div2 {
+    border: 1px solid green;
+    height: 130px;
+    display: block;
+  }
+
+  tipoProducto2 {
+    display: block;
+  }
+
+  .tipoProducto {
+    display: none;
+  }
 }

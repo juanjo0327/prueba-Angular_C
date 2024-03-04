@@ -1,5 +1,6 @@
-import { Component, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { IProducto } from '../Inicio/models/productos';
+import { ProductosServices } from '../services/producto.services';
 
 @Component({
   selector: 'modificar',
@@ -7,4 +8,20 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./modificar.component.css']
 })
 export class ModificarComponent {
+
+  busqueda: string = '';
+  productos: IProducto[] = [];
+  constructor(
+    private productosService: ProductosServices) {
+      this.buscarEnTiempoReal();
+    }
+
+  buscarEnTiempoReal() {
+    this.productosService.busquedaProducto(this.busqueda).subscribe({
+      next: (result) => {
+        this.productos = result;
+      }
+    })
+
+  }
 }

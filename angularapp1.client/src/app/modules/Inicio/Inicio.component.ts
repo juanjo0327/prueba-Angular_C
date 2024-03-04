@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { ProductosServices } from '../services/producto.services';
 import { IProducto } from './models/productos';
 
@@ -22,7 +21,6 @@ export class InicioComponent {
     this.productosService.obtenerProductos().subscribe({
       next: (result) => {
         this.productos = result;
-        console.log(this.productos);
       }
     })
   }

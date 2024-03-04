@@ -3,6 +3,7 @@ export interface IProducto {
   nombreProductos: string
   nombreTipoProducto: string
   descripcion: string
-  existencia: string
-  precio: string
+  existencia: number
+  precio: number
+  TipoProducto_Id: number
 }

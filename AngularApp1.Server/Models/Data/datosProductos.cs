@@ -1,6 +1,8 @@
-﻿using Ejemplo_prueba.Models;
+﻿using AngularApp1.Server.Models.Respuesta;
+using Ejemplo_prueba.Models;
 using Ejemplo_prueba.Models.DB;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
@@ -14,11 +16,84 @@ namespace data.Data
 {
     public class productoData
     {
-        //Metodo para obtener los productos de la BD
-        public static List<productos> Obtener()
+        //private string connectionString;
+
+        /*public productoData(string connectionString)
         {
-            
-            List<productos> oListaProducto = new List<productos>();
+            this.connectionString = connectionString;
+        }*/
+        //Metodo Para abrir conexion
+        /*public SqlConnection abrirConexion()
+        {
+            SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion);
+            try
+            {
+                oConexion.Open();
+                return oConexion;
+            }
+            catch(Exception ex) 
+            {
+                Console.WriteLine($"Error al abrir la conexión: {ex.Message}");
+                return null;
+            }
+                
+        }*/
+        //Metodo Para cerrar conexion
+        /*public void CerrarConexion(SqlConnection conexion)
+        {
+            try
+            {
+                if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al cerrar la conexión: {ex.Message}");
+            }
+        }*/
+
+        public static List<productosObtener> ObtenerUltimoProducto()
+        {
+            List<productosObtener> oListaProducto = new List<productosObtener>();
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                //Stored Procedure de la api que se va a consumir
+                SqlCommand cmd = new SqlCommand("obtenerUltimoCodigo", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            oListaProducto.Add(new productosObtener()
+                            {
+                                IdProductos = Convert.ToInt32(dr["Id"]),
+                            });
+                        }
+
+                    }
+                    Console.WriteLine(oListaProducto);
+                    return oListaProducto;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Entro a la excepcion: " + ex);
+                    Console.WriteLine(ex);
+                    return oListaProducto;
+                }
+            }
+        }
+
+        //Metodo para obtener los productos de la BD
+        public static List<productosObtener> Obtener()
+        {
+            List<productosObtener> oListaProducto = new List<productosObtener>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 //Stored Procedure de la api que se va a consumir
@@ -33,7 +108,7 @@ namespace data.Data
                     {
                         while (dr.Read())
                         {
-                            oListaProducto.Add(new productos()
+                            oListaProducto.Add(new productosObtener()
                             {
                                 IdProductos = Convert.ToInt32(dr["Id"]),
                                 nombreProductos = (string)dr["NombreProducto"],
@@ -45,34 +120,30 @@ namespace data.Data
                         }
 
                     }
-                    
+
                     return oListaProducto;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Entro a la excepcion 7: " + ex);
+                    Console.WriteLine("Entro a la excepcion: " + ex);
                     Console.WriteLine(ex);
                     return oListaProducto;
                 }
             }
-        }
+        }        
 
-        ////Metodo para Regristrar productos en la BD
-        public static bool registrarProductos ()
-        {
-            return true;
-        }
-        /*public static bool Registrar(Result oResult)
+        //Metodo para Regristrar productos en la BD
+        public static bool agregarProductos(productoRegistrar productoRegistrar)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 SqlCommand cmd = new SqlCommand("Crear_Productos", oConexion);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id", oResult.Id);
-                cmd.Parameters.AddWithValue("@Mensaje", oResult.Mensaje);
-                cmd.Parameters.AddWithValue("@Datos", oResult.Datos);
-                cmd.Parameters.AddWithValue("@EsValido", oResult.EsValido);
-
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@NombreProducto", productoRegistrar.nombreProducto);
+                cmd.Parameters.AddWithValue("@DescripcionProducto", productoRegistrar.Descripcion);
+                cmd.Parameters.AddWithValue("@Precio", productoRegistrar.Precio);
+                cmd.Parameters.AddWithValue("@Existencia", productoRegistrar.Existencia);
+                cmd.Parameters.AddWithValue("@TipoProducto_Id", productoRegistrar.TipoProducto_Id);
                 try
                 {
                     oConexion.Open();
@@ -85,6 +156,23 @@ namespace data.Data
                     return false;
                 }
             }
-        }*/
+            /*using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("Crear_Productos", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return false;
+                }
+            }*/
+        }
     }
 }
