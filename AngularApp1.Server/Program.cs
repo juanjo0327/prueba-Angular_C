@@ -11,7 +11,7 @@ app.UseCors(options =>
     options
     .AllowAnyOrigin()
     .AllowAnyMethod()
-    .AllowAnyMethod();
+    .AllowAnyHeader();
 });
 
 app.UseDefaultFiles();

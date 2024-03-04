@@ -1,5 +1,10 @@
 <h1 id="tableLabel">Modificar o Eliminar</h1>
 
+<div>
+  <input type="text" [(ngModel)]="busqueda" placeholder="Buscar..." (input)="buscarEnTiempoReal()">
+  <button>Buscar</button>
+</div>
+
 <table class="tabla">
   <thead>
     <tr class="encabezados">

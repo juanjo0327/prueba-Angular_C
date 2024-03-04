@@ -1,56 +1,61 @@
 <h1>Agregar Articulos</h1>
 
-<div class="card_global" *ngFor="let elemento of lstDatos">
-  <!--><div class="card_global" *ngFor="let elemento of lstDatos"><-->
-  <div class="div_cards">
-    <div class="card">
-      <div class="div_titulo">
-        <p>{{ elemento.dato1 }}</p>
+<form [formGroup]="formProducto" *ngFor="let elemento of lstDatos">
+  <div class="formulario">
+    <div class="card_global">
+      <div class="div_cards">
+        <!--Card Nombre-->
+        <div class="card ">
+          <div class="div_titulo">
+            <p>{{ elemento.dato1 }}</p>
+          </div>
+          <div class="div_info">
+            <input type="text" formControlName="nombreProducto" (input)="validarSoloLetras($event)" placeholder="{{ elemento.input1 }}" />
+          </div>
+        </div>
+        <!--Card Descripcion-->
+        <div class="card ">
+          <div class="div_titulo">
+            <p>{{ elemento.dato2 }}</p>
+          </div>
+          <div class="div_info">
+            <input type="text" formControlName="Descripcion" (input)="validarSoloLetras($event)" placeholder="{{ elemento.input2 }}" />
+          </div>
+        </div>
+        <!--Card precio-->
+        <div class="card ">
+          <div class="div_titulo">
+            <p class="p">{{ elemento.dato3 }}</p>
+          </div>
+          <div class="div_info">
+            <input formControlName="Precio" (input)="validarSoloDigitos($event)" placeholder="{{ elemento.input3 }}" />
+          </div>
+        </div>
+        <!--Card Existencia-->
+        <div class="card">
+          <div class="div_titulo">
+            <p class="p">{{ elemento.dato4 }}</p>
+          </div>
+          <div class="div_info">
+            <input type="text" formControlName="Existencia" (input)="validarSoloDigitos($event)" placeholder="{{ elemento.input4 }}" />
+          </div>
+        </div>
+        <!--Card Tipo de Producto-->
+        <div class="card tipoProducto">
+          <div class="div_titulo">
+            <p class="p">{{ elemento.dato5 }}</p>
+          </div>
+          <div class="div_info">
+            <input type="text" formControlName="TipoProducto_Id" (input)="validarSoloDigitos($event)" placeholder="{{ elemento.input5 }}" />
+          </div>
+        </div>
       </div>
-      <div class="div_info">
-        <input placeholder="{{ elemento.input1 }}" />
-      </div>
-    </div>
-    <div class="card">
-      <div class="div_titulo">
-        <p>{{ elemento.dato2 }}</p>
-      </div>
-      <div class="div_info">
-        <input placeholder="{{ elemento.input2 }}" />
-      </div>
-    </div>
 
-    <div class="card">
-      <div class="div_titulo">
-        <p class="p">{{ elemento.dato3 }}</p>
-      </div>
-      <div class="div_info">
-        <input placeholder="{{ elemento.input3 }}" />
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="div_titulo">
-        <p class="p">{{ elemento.dato4 }}</p>
-      </div>
-      <div class="div_info">
-        <input placeholder="{{ elemento.input4 }}" />
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="div_titulo">
-        <p class="p">{{ elemento.dato5 }}</p>
-      </div>
-      <div class="div_info">
-        <input placeholder="{{ elemento.input5 }}" />
+      <div class="div_button">
+        <div class="div_center">
+          <button class="btn_registrar" (click)="enviarDatos(formProducto)" type="submit">Registrar Producto</button>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="div_button">
-    <div class="div_center">
-      <button class="btn_registrar">Registrar Producto</button>
-    </div>
-  </div>
-</div>
+</form>
