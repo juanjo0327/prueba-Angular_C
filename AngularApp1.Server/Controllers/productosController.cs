@@ -4,6 +4,8 @@ using AngularApp1.Server.Models.Respuesta;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using static AngularApp1.Server.Models.Producto;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using AngularApp1.Server.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Ejemplo_prueba.Controllers
 {
@@ -24,9 +26,6 @@ namespace Ejemplo_prueba.Controllers
             List<productosObtener> ultimoId = productoData.ObtenerUltimoProducto();
             try
             {
-                //Console.WriteLine(ultimoId);
-                //Console.WriteLine(model);
-
                     int idProducto = ultimoId[0].IdProductos;
 
                     bool resultado = productoData.agregarProductos(new productoRegistrar
@@ -38,15 +37,6 @@ namespace Ejemplo_prueba.Controllers
                         TipoProducto_Id = model.TipoProducto_Id,
                         Existencia = model.Existencia
                     });
-                
-
-                /*bool resultado = productoData.agregarProductos(new Respuesta
-                {
-                    Success = model.nombreProductos, // Ajusta según las propiedades reales de tu modelo
-                    Messagge = model.Mensaje, // Ajusta según las propiedades reales de tu modelo
-                    Data = model.Datos // Ajusta según las propiedades reales de tu modelo
-                });*/
-                //productoData.agregarProductos();
                 oR.Success = 1;
             }
             catch (Exception ex)
@@ -55,6 +45,30 @@ namespace Ejemplo_prueba.Controllers
                 oR.Messagge = ex.Message;
             }
             return oR;
+        }
+        //Aqui inicia el metodo para la busqueda de productos
+        
+    }
+    [Route("api/busquedaProductos")]
+    public class busquedaController : Controller
+    {
+        [HttpGet]
+        public List<productosObtener> busquedaProductos( int id, string valor)
+        {
+            try
+            {
+                return productoData.busquedaProducto(new productosObtener
+                {
+                    IdProductos = id,
+                    nombreProductos = valor
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en la búsqueda: {ex.Message}");
+                return new List<productosObtener>();
+            }
+            
         }
     }
 }

@@ -130,7 +130,7 @@ namespace data.Data
                     return oListaProducto;
                 }
             }
-        }        
+        }
 
         //Metodo para Regristrar productos en la BD
         public static bool agregarProductos(productoRegistrar productoRegistrar)
@@ -156,23 +156,50 @@ namespace data.Data
                     return false;
                 }
             }
-            /*using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
-            {
-                SqlCommand cmd = new SqlCommand("Crear_Productos", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
+        }
 
+        //Metodo para Regristrar productos en la BD
+        public static List<productosObtener> busquedaProducto(productosObtener productosObtener)
+        {
+            List<productosObtener> oListaProducto = new List<productosObtener>();
+            if(productosObtener.nombreProductos == null)
+            {
+                productosObtener.nombreProductos = "0";
+            }
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                //Stored Procedure que se va a consumir
+                SqlCommand cmd = new SqlCommand("Busqueda_Productos", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", productosObtener.IdProductos);
+                cmd.Parameters.AddWithValue("@nombreProducto", productosObtener.nombreProductos);
                 try
                 {
                     oConexion.Open();
                     cmd.ExecuteNonQuery();
-                    return true;
+                    //if(productosObtener.nombreProductos != 0 && )
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            oListaProducto.Add(new productosObtener()
+                            {
+                                IdProductos = Convert.ToInt32(dr["Id"]),
+                                nombreProductos = (string)dr["NombreProducto"],
+                                descripcion = (string)dr["DescripcionProducto"],
+                                Existencia = Convert.ToInt32(dr["Existencia"]),
+                                Precio = Convert.ToInt32(dr["Precio"]),
+                            });
+                        }
+                    }
+                    return oListaProducto;
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    Console.WriteLine(e);
-                    return false;
+                    Console.WriteLine(ex);
+                    return oListaProducto;
                 }
-            }*/
+            }
         }
     }
 }

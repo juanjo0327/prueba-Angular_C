@@ -10,7 +10,7 @@
   <ItemGroup>
     <Folder Include="src\app\modules\Agregar\" />
     <Folder Include="src\app\modules\Inicio\models\" />
-    <Folder Include="src\app\modules\Modificar\" />
+    <Folder Include="src\app\modules\Modificar\NewFolder\" />
     <Folder Include="src\app\modules\services\" />
     <Folder Include="src\app\enviroments\" />
   </ItemGroup>

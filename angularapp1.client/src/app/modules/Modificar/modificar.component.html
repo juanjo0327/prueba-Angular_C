@@ -1,14 +1,21 @@
 <h1 id="tableLabel">Modificar o Eliminar</h1>
 
-<div>
-  <input type="text" [(ngModel)]="busqueda" placeholder="Buscar..." (input)="buscarEnTiempoReal()">
-  <button>Buscar</button>
+<div style="margin-bottom: 20px">
+  <p>Buscar por:</p>
+  <div class="busqueda">
+    <span>ID:</span>
+    <input type="text" [(ngModel)]="busquedaId" placeholder="Buscar por Id" (input)="buscarEnTiempoReal(); validarSoloDigitos($event)">
+  </div>
+  <div class="busqueda" style="margin-left: 10px">
+    <span>Nombre:</span>
+    <input type="text" [(ngModel)]="busquedaNombre" placeholder="Buscar por Nombre" (input)="buscarEnTiempoReal(); validarSoloLetras($event)">
+  </div>
 </div>
 
 <table class="tabla">
-  <thead>
+  <thead >
     <tr class="encabezados">
-      <th class="caja"><span>Id_Producto</span></th>
+      <th class="caja"><span>Id_productos</span></th>
       <th class="caja"><span>Nombre_Producto</span></th>
       <th class="caja"><span>Tipo_Producto</span></th>
       <th class="caja"><span>Descripcion</span></th>
@@ -16,48 +23,13 @@
       <th class="caja"><span>Acción</span></th>
     </tr>
   </thead>
-  <tbody>
-    <tr class="subEncabezados">
-      <th class="caja"><span class="infotabla">1</span></th>
-      <th class="caja"><span class="infotabla">Escoba</span></th>
+  <tbody *ngFor="let elemento of productos">
+    <tr class="subEncabezados" >
+      <th class="caja"><span class="infotabla">{{elemento.idProductos}}</span></th>
+      <th class="caja"><span class="infotabla">{{elemento.nombreProductos}}</span></th>
       <th class="caja"><span class="infotabla">Material</span></th>
-      <th class="caja"><span class="infotabla">Escoba de madera moderna</span></th>
-      <th class="caja"><span class="infotabla">2</span></th>
-      <th class="cajaMod">
-        <div class="divContendo">
-          <div class="btnModificar">
-            <button class="btnglobal">Modificar</button>
-          </div>
-          <div class="btnEliminar">
-            <button class="btnglobal">Eliminar</button>
-          </div>
-        </div>
-      </th>
-
-    </tr>
-    <tr class="subEncabezados">
-      <th class="caja"><span class="infotabla">1</span></th>
-      <th class="caja"><span class="infotabla">Escoba</span></th>
-      <th class="caja"><span class="infotabla">Material</span></th>
-      <th class="caja"><span class="infotabla">Escoba de madera moderna</span></th>
-      <th class="caja"><span class="infotabla">2</span></th>
-      <th class="cajaMod">
-        <div class="divContendo">
-          <div class="btnModificar">
-            <button class="btnglobal">Modificar</button>
-          </div>
-          <div class="btnEliminar">
-            <button class="btnglobal">Eliminar</button>
-          </div>
-        </div>
-      </th>
-    </tr>
-    <tr class="subEncabezados">
-      <th class="caja"><span class="infotabla">1</span></th>
-      <th class="caja"><span class="infotabla">Escoba</span></th>
-      <th class="caja"><span class="infotabla">Material</span></th>
-      <th class="caja"><span class="infotabla">Escoba de madera moderna</span></th>
-      <th class="caja"><span class="infotabla">2</span></th>
+      <th class="caja"><span class="infotabla">{{elemento.descripcion}}</span></th>
+      <th class="caja"><span class="infotabla">{{elemento.existencia}}</span></th>
       <th class="cajaMod">
         <div class="divContendo">
           <div class="btnModificar">
