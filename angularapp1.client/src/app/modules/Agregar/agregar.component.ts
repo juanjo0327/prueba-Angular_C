@@ -12,10 +12,10 @@ export class AgregarComponent {
 
   formProducto: FormGroup = this.fb.group({
     nombreProducto: undefined,
-    Descripcion: undefined,
-    Existencia: undefined,
-    Precio: undefined,
-    TipoProducto_Id: undefined,
+    descripcion: undefined,
+    existencia: undefined,
+    precio: undefined,
+    tipoProducto_Id: undefined,
   })
 
   constructor(
@@ -27,7 +27,7 @@ export class AgregarComponent {
     let producto: IProducto = form.value as IProducto;
 
     console.log(producto)
-    console.log(producto.existencia);
+    console.log(producto.nombreProductos);
     //if (!isNaN(Number(producto.existencia)) && producto.existencia != null && producto.existencia !== 0)
     //{
       this.productosService.agregarProductos(producto).subscribe({
@@ -37,10 +37,10 @@ export class AgregarComponent {
             idProducto: [''],
             nombreProducto: [''],
             nombreTipoProducto: [''],
-            Descripcion: [''],
-            Existencia: [''],
-            Precio: [''],
-            TipoProducto_Id: [''],
+            descripcion: [''],
+            existencia: [''],
+            precio: [''],
+            tipoProducto_Id: [''],
           })
         },
         error: (error) => {

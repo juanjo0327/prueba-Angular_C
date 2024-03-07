@@ -1,0 +1,64 @@
+<div>
+  <span>Pantalla para modificar Producto</span>
+
+  <form>
+    <div class="formulario" *ngFor="let elemento of lstDatos">
+      <div class="card_global" *ngFor="let dato of productos">
+        <div class="div_cards">
+          <!--Card Nombre-->
+          <div class="card ">
+            <div class="div_titulo">
+              <p>{{elemento.dato1}}</p>
+            </div>
+            <div class="div_info">
+              <input type="text" value="{{ dato.nombreProductos}}" />
+            </div>
+          </div>
+          <!--Card Descripcion-->
+          <div class="card ">
+            <div class="div_titulo">
+              <p>{{elemento.dato2}}</p>
+            </div>
+            <div class="div_info">
+              <input type="text" value="{{ dato.descripcion }}" />
+            </div>
+          </div>
+          <!--Card precio-->
+          <div class="card ">
+            <div class="div_titulo">
+              <p class="p">{{elemento.dato3}}</p>
+            </div>
+            <div class="div_info">
+              <input value="{{ dato.precio }}" />
+            </div>
+          </div>
+          <!--Card Existencia-->
+          <div class="card">
+            <div class="div_titulo">
+              <p class="p">{{ elemento.dato4 }}</p>
+            </div>
+            <div class="div_info">
+              <input type="text" value="{{ dato.existencia }}" />
+            </div>
+          </div>
+          <!--Card Tipo de Producto-->
+          <div class="card tipoProducto">
+            <div class="div_titulo">
+              <p class="p">{{ elemento.dato5 }}</p>
+            </div>
+            <div class="div_info">
+              <input type="text" value="{{ dato.tipoProducto_Id }}" />
+            </div>
+          </div>
+        </div>
+
+        <div class="div_button">
+          <div class="div_center">
+            <button class="btn_registrar" type="submit">Registrar Producto</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>

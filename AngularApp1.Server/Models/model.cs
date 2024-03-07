@@ -18,6 +18,7 @@ namespace AngularApp1.Server.Models
             public string descripcion { get; set; }
             public int Existencia { get; set; } 
             public int Precio { get; set;}
+            public int TipoProducto_Id { get; set; }
         }
 
         public class productoRegistrar

@@ -19,7 +19,7 @@
             <p>{{ elemento.dato2 }}</p>
           </div>
           <div class="div_info">
-            <input type="text" formControlName="Descripcion" (input)="validarSoloLetras($event)" placeholder="{{ elemento.input2 }}" />
+            <input type="text" formControlName="descripcion" (input)="validarSoloLetras($event)" placeholder="{{ elemento.input2 }}" />
           </div>
         </div>
         <!--Card precio-->
@@ -28,7 +28,7 @@
             <p class="p">{{ elemento.dato3 }}</p>
           </div>
           <div class="div_info">
-            <input formControlName="Precio" (input)="validarSoloDigitos($event)" placeholder="{{ elemento.input3 }}" />
+            <input formControlName="precio" (input)="validarSoloDigitos($event)" placeholder="{{ elemento.input3 }}" />
           </div>
         </div>
         <!--Card Existencia-->
@@ -37,7 +37,7 @@
             <p class="p">{{ elemento.dato4 }}</p>
           </div>
           <div class="div_info">
-            <input type="text" formControlName="Existencia" (input)="validarSoloDigitos($event)" placeholder="{{ elemento.input4 }}" />
+            <input type="text" formControlName="existencia" (input)="validarSoloDigitos($event)" placeholder="{{ elemento.input4 }}" />
           </div>
         </div>
         <!--Card Tipo de Producto-->
@@ -46,7 +46,7 @@
             <p class="p">{{ elemento.dato5 }}</p>
           </div>
           <div class="div_info">
-            <input type="text" formControlName="TipoProducto_Id" (input)="validarSoloDigitos($event)" placeholder="{{ elemento.input5 }}" />
+            <input type="text" formControlName="tipoProducto_Id" (input)="validarSoloDigitos($event)" placeholder="{{ elemento.input5 }}" />
           </div>
         </div>
       </div>

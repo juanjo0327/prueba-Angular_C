@@ -5,5 +5,5 @@ export interface IProducto {
   descripcion: string
   existencia: number
   precio: number
-  TipoProducto_Id: number
+  tipoProducto_Id: number
 }
