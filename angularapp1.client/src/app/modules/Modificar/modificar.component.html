@@ -32,8 +32,8 @@
       <th class="caja"><span class="infotabla">{{elemento.existencia}}</span></th>
       <th class="cajaMod">
         <div class="divContendo">
-          <div class="btnModificar">
-            <button class="btnglobal">Modificar</button>
+          <div class="btnModificar" >
+            <button class="btnglobal" [routerLink]="['/modificarProducto', elemento.idProductos]" id="miBoton">Modificar</button>
           </div>
           <div class="btnEliminar">
             <button class="btnglobal">Eliminar</button>

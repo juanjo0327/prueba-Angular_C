@@ -43,10 +43,15 @@ export class ProductosServices {
       ...producto
     })
   }
-  //https://localhost:7206/api/productos/busqueda?valor=${valor}
+
+  //Aqui se consume la api: https://localhost:7206/api/productos/busqueda?valor=${valor}
   busquedaProducto(id: number, valor: string): Observable<any> {
     let url = `${this.api}/busquedaProductos?id=${id}&valor=${valor}`;
     return this.http.get(url);
   }
 
+  obtenerDatosProducto(id: number): Observable<any> {
+    let url = `${this.api}/obtenerDatos?id=${id}`;
+    return this.http.get(url);
+  }
 }

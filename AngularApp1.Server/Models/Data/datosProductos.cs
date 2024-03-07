@@ -73,7 +73,7 @@ namespace data.Data
                         {
                             oListaProducto.Add(new productosObtener()
                             {
-                                IdProductos = Convert.ToInt32(dr["Id"]),
+                                IdProductos = Convert.ToInt32(dr["IdProducto"]),
                             });
                         }
 
@@ -83,8 +83,7 @@ namespace data.Data
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Entro a la excepcion: " + ex);
-                    Console.WriteLine(ex);
+                    Console.WriteLine("Entro a la excepcion del ObtenerUltimoProducto: " + ex);
                     return oListaProducto;
                 }
             }
@@ -110,7 +109,7 @@ namespace data.Data
                         {
                             oListaProducto.Add(new productosObtener()
                             {
-                                IdProductos = Convert.ToInt32(dr["Id"]),
+                                IdProductos = Convert.ToInt32(dr["IdProducto"]),
                                 nombreProductos = (string)dr["NombreProducto"],
                                 nombreTipoProducto = (string)dr["nombreTipoProducto"],
                                 descripcion = (string)dr["DescripcionProducto"],
@@ -125,8 +124,7 @@ namespace data.Data
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Entro a la excepcion: " + ex);
-                    Console.WriteLine(ex);
+                    Console.WriteLine("Entro a la excepcion del Obtener: " + ex);
                     return oListaProducto;
                 }
             }
@@ -135,11 +133,12 @@ namespace data.Data
         //Metodo para Regristrar productos en la BD
         public static bool agregarProductos(productoRegistrar productoRegistrar)
         {
+            Console.WriteLine("Nombre: -----------------", productoRegistrar.nombreProducto);
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 SqlCommand cmd = new SqlCommand("Crear_Productos", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@NombreProducto", productoRegistrar.nombreProducto);
+                cmd.Parameters.AddWithValue("@nombreProducto", productoRegistrar.nombreProducto);
                 cmd.Parameters.AddWithValue("@DescripcionProducto", productoRegistrar.Descripcion);
                 cmd.Parameters.AddWithValue("@Precio", productoRegistrar.Precio);
                 cmd.Parameters.AddWithValue("@Existencia", productoRegistrar.Existencia);
@@ -152,6 +151,7 @@ namespace data.Data
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine("Entro a la excepcion del agregarProductos:", e);
                     Console.WriteLine(e);
                     return false;
                 }
@@ -184,7 +184,7 @@ namespace data.Data
                         {
                             oListaProducto.Add(new productosObtener()
                             {
-                                IdProductos = Convert.ToInt32(dr["Id"]),
+                                IdProductos = Convert.ToInt32(dr["IdProducto"]),
                                 nombreProductos = (string)dr["NombreProducto"],
                                 descripcion = (string)dr["DescripcionProducto"],
                                 Existencia = Convert.ToInt32(dr["Existencia"]),
@@ -196,6 +196,47 @@ namespace data.Data
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine("Entro a la excepcion del busquedaProducto:" + ex);
+                    Console.WriteLine(ex);
+
+                    return oListaProducto;
+                }
+            }
+        }
+
+        public static List<productosObtener> obtenerDatosProducto(productosObtener productosObtener)
+        {
+            List<productosObtener> oListaProducto = new List<productosObtener>();
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                //Stored Procedure que se va a consumir
+                SqlCommand cmd = new SqlCommand("obtenerDatosProductos", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", productosObtener.IdProductos);
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            oListaProducto.Add(new productosObtener()
+                            {
+                                IdProductos = Convert.ToInt32(dr["IdProducto"]),
+                                nombreProductos = (string)dr["NombreProducto"],
+                                descripcion = (string)dr["DescripcionProducto"],
+                                Existencia = Convert.ToInt32(dr["Existencia"]),
+                                Precio = Convert.ToInt32(dr["Precio"]),
+                                TipoProducto_Id = Convert.ToInt32(dr["IdTiposProductos"])
+                            });
+                        }
+                    }
+                    return oListaProducto;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Entro a la excepcion del busquedaProducto:" + ex);
                     Console.WriteLine(ex);
                     return oListaProducto;
                 }

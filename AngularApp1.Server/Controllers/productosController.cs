@@ -23,6 +23,8 @@ namespace Ejemplo_prueba.Controllers
         public ActionResult<Respuesta> agregar([FromBody] productoRegistrar model)
         {
             Respuesta oR = new Respuesta();
+            Console.WriteLine("Nombre En productosController: ----------------");
+            Console.WriteLine(model.nombreProducto);
             List<productosObtener> ultimoId = productoData.ObtenerUltimoProducto();
             try
             {
@@ -30,7 +32,6 @@ namespace Ejemplo_prueba.Controllers
 
                     bool resultado = productoData.agregarProductos(new productoRegistrar
                     {
-                        IdProductos = idProducto,
                         nombreProducto = model.nombreProducto,
                         Precio = model.Precio,
                         Descripcion = model.Descripcion,
@@ -69,6 +70,28 @@ namespace Ejemplo_prueba.Controllers
                 return new List<productosObtener>();
             }
             
+        }
+    }
+
+    [Route("api/obtenerDatos")]
+    public class obtenerDatosController : Controller
+    {
+        [HttpGet]
+        public List<productosObtener> obtenerDatos(int id)
+        {
+            try
+            {
+                return productoData.obtenerDatosProducto(new productosObtener
+                {
+                    IdProductos = id
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en la búsqueda: {ex.Message}");
+                return new List<productosObtener>();
+            }
+
         }
     }
 }

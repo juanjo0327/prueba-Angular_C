@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="src\app\modules\Agregar\" />
     <Folder Include="src\app\modules\Inicio\models\" />
-    <Folder Include="src\app\modules\Modificar\NewFolder\" />
     <Folder Include="src\app\modules\services\" />
     <Folder Include="src\app\enviroments\" />
   </ItemGroup>
@@ -25,5 +24,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="src\app\modules\NewFolder1\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\app\modules\Modificar\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\modules\Modificar\NewFolder\**" />
   </ItemGroup>
 </Project>

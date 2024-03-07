@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AgregarComponent } from './modules/Agregar/agregar.component';
 import { InicioComponent } from './modules/Inicio/Inicio.component';
 import { ModificarComponent } from './modules/Modificar/modificar.component';
+import { ModificarProducto } from './modules/Modificar/modificarProducto/modificarProducto.component';
 //import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ModificarComponent } from './modules/Modificar/modificar.component';
     InicioComponent,
     AgregarComponent,
     ModificarComponent,
+    ModificarProducto,
   ],
   imports: [
     CommonModule,

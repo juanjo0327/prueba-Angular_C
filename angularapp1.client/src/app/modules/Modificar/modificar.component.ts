@@ -21,6 +21,7 @@ export class ModificarComponent {
     this.productosService.busquedaProducto(this.busquedaId, this.busquedaNombre).subscribe({
       next: (result) => {
         this.productos = result;
+        console.log(this.productos);
       }
     })
   }
