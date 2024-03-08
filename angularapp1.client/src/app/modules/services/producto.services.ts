@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, Observable } from "rxjs";
+import { catchError, observable, Observable } from "rxjs";
 import { enviroment } from "../../enviroments/enviroments";
 import { MyResponse } from "../../interfaces";
 import { IProducto } from "../Inicio/models/productos";
@@ -25,7 +25,7 @@ export class ProductosServices {
   }
 
   //obtener Productos
-  //Aqui se consume la url de la api https://localhost:7206/api
+  //Aqui se consume el endPointhttps://localhost:7206/api/productos
   obtenerProductos(): Observable<IProducto[]> {
     let url = `${this.api}/productos`;
 
@@ -37,6 +37,8 @@ export class ProductosServices {
     );
   }
 
+  //agregar Productos
+  //Aqui consule el endPoint: https://localhost:7206/api/productos/agregar
   agregarProductos(producto: IProducto) {
     let url = `${this.api}/productos/agregar`;
     return this.http.post(url, {
@@ -44,14 +46,26 @@ export class ProductosServices {
     })
   }
 
-  //Aqui se consume la api: https://localhost:7206/api/productos/busqueda?valor=${valor}
+  //busqueda Productos
+  //Aqui se consume el endPoint: https://localhost:7206/api/productos/busquedaProductos?valor=${valor}
   busquedaProducto(id: number, valor: string): Observable<any> {
     let url = `${this.api}/busquedaProductos?id=${id}&valor=${valor}`;
     return this.http.get(url);
   }
 
+  //obtener Datos del Producto para la pantalla modificarProducto
+  //Aqui se consume el endPoint: https://localhost:7206/api/productos/obtenerDatos?id={id}
   obtenerDatosProducto(id: number): Observable<any> {
     let url = `${this.api}/obtenerDatos?id=${id}`;
     return this.http.get(url);
   }
+
+  //eliminar Producto
+  //Aqui se consume el endPoint: https://localhost:7206/api/productos/eliminarProducto?id={id}
+  eliminarProducto(id: number): Observable<any> {
+    let url = `${this.api}/eliminarProducto?id=${id}`
+    return this.http.post(url, id);
+  }
+
+
 }

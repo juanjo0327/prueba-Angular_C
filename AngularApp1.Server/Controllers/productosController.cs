@@ -23,8 +23,6 @@ namespace Ejemplo_prueba.Controllers
         public ActionResult<Respuesta> agregar([FromBody] productoRegistrar model)
         {
             Respuesta oR = new Respuesta();
-            Console.WriteLine("Nombre En productosController: ----------------");
-            Console.WriteLine(model.nombreProducto);
             List<productosObtener> ultimoId = productoData.ObtenerUltimoProducto();
             try
             {
@@ -51,6 +49,7 @@ namespace Ejemplo_prueba.Controllers
         
     }
     [Route("api/busquedaProductos")]
+    //Este endPoint se ejecuta y manda los datos a la pantalla principal del Modificar
     public class busquedaController : Controller
     {
         [HttpGet]
@@ -82,6 +81,29 @@ namespace Ejemplo_prueba.Controllers
             try
             {
                 return productoData.obtenerDatosProducto(new productosObtener
+                {
+                    IdProductos = id
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en la búsqueda: {ex.Message}");
+                return new List<productosObtener>();
+            }
+
+        }
+    }
+
+    [Route("api/")]
+    //Este endPoint se ejecuta al seleccionar el boton Eliminar y manda los datos a la pantalla principal del Modificar
+    public class eliminarProductoController : Controller
+    {
+        [HttpPost("[action]")]
+        public List<productosObtener> eliminarProducto([FromBody] int id)
+        {
+            try
+            {
+                return productoData.eliminarProducto(new productosObtener
                 {
                     IdProductos = id
                 });

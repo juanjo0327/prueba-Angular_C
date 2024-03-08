@@ -189,6 +189,8 @@ namespace data.Data
                                 descripcion = (string)dr["DescripcionProducto"],
                                 Existencia = Convert.ToInt32(dr["Existencia"]),
                                 Precio = Convert.ToInt32(dr["Precio"]),
+                                TipoProducto_Id = Convert.ToInt32(dr["IdTiposProductos"]),
+                                nombreTipoProducto = (string)dr["nombreTipoProducto"]
                             });
                         }
                     }
@@ -228,7 +230,47 @@ namespace data.Data
                                 descripcion = (string)dr["DescripcionProducto"],
                                 Existencia = Convert.ToInt32(dr["Existencia"]),
                                 Precio = Convert.ToInt32(dr["Precio"]),
-                                TipoProducto_Id = Convert.ToInt32(dr["IdTiposProductos"])
+                            });
+                        }
+                    }
+                    return oListaProducto;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Entro a la excepcion del busquedaProducto:" + ex);
+                    Console.WriteLine(ex);
+                    return oListaProducto;
+                }
+            }
+        }
+
+        public static List<productosObtener> eliminarProducto(productosObtener productosObtener)
+        {
+            List<productosObtener> oListaProducto = new List<productosObtener>();
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                //Stored Procedure que se va a consumir
+                SqlCommand cmd = new SqlCommand("eliminarProductos", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", productosObtener.IdProductos);
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            oListaProducto.Add(new productosObtener()
+                            {
+                                IdProductos = Convert.ToInt32(dr["IdProducto"]),
+                                nombreProductos = (string)dr["NombreProducto"],
+                                descripcion = (string)dr["DescripcionProducto"],
+                                Existencia = Convert.ToInt32(dr["Existencia"]),
+                                Precio = Convert.ToInt32(dr["Precio"]),
+                                TipoProducto_Id = Convert.ToInt32(dr["IdTiposProductos"]),
+                                nombreTipoProducto = (string)dr["nombreTipoProducto"]
+                                
                             });
                         }
                     }
