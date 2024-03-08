@@ -21,7 +21,6 @@ export class InicioComponent {
     this.productosService.obtenerProductos().subscribe({
       next: (result) => {
         this.productos = result;
-        console.log(this.productos);
       }
     })
   }

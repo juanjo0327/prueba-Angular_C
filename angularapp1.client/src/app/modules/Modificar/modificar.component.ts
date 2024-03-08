@@ -21,7 +21,16 @@ export class ModificarComponent {
     this.productosService.busquedaProducto(this.busquedaId, this.busquedaNombre).subscribe({
       next: (result) => {
         this.productos = result;
-        console.log(this.productos);
+
+      }
+    })
+  }
+
+  eliminarProducto(id: number) {
+    this.productosService.eliminarProducto(id).subscribe({
+      next: (result) => {
+        this.productos = result;
+        alert("Producto Eliminado Correctamente");
       }
     })
   }

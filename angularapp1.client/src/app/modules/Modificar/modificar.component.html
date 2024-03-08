@@ -19,24 +19,26 @@
       <th class="caja"><span>Nombre_Producto</span></th>
       <th class="caja"><span>Tipo_Producto</span></th>
       <th class="caja"><span>Descripcion</span></th>
+      <th class="caja"><span>precio</span></th>
       <th class="caja"><span>Existencia</span></th>
       <th class="caja"><span>Acción</span></th>
     </tr>
   </thead>
   <tbody *ngFor="let elemento of productos">
-    <tr class="subEncabezados" >
+    <tr class="subEncabezados">
       <th class="caja"><span class="infotabla">{{elemento.idProductos}}</span></th>
       <th class="caja"><span class="infotabla">{{elemento.nombreProductos}}</span></th>
+      <th class="caja"><span class="infotabla">{{elemento.tipoProducto_Id}}</span></th>
       <th class="caja"><span class="infotabla">Material</span></th>
       <th class="caja"><span class="infotabla">{{elemento.descripcion}}</span></th>
       <th class="caja"><span class="infotabla">{{elemento.existencia}}</span></th>
       <th class="cajaMod">
         <div class="divContendo">
-          <div class="btnModificar" >
+          <div class="btnModificar">
             <button class="btnglobal" [routerLink]="['/modificarProducto', elemento.idProductos]" id="miBoton">Modificar</button>
           </div>
           <div class="btnEliminar">
-            <button class="btnglobal">Eliminar</button>
+            <button class="btnglobal" (click)="eliminarProducto(elemento.idProductos)">Eliminar</button>
           </div>
         </div>
       </th>
