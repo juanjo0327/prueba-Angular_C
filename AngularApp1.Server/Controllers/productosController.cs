@@ -98,8 +98,8 @@ namespace Ejemplo_prueba.Controllers
     //Este endPoint se ejecuta al seleccionar el boton Eliminar y manda los datos a la pantalla principal del Modificar
     public class eliminarProductoController : Controller
     {
-        [HttpPost("[action]")]
-        public List<productosObtener> eliminarProducto([FromBody] int id)
+        [HttpDelete("eliminarProducto")]
+        public List<productosObtener> delete(int id)
         {
             try
             {
@@ -115,5 +115,31 @@ namespace Ejemplo_prueba.Controllers
             }
 
         }
+    }
+    [Route("api/")]
+    public class modificarProductoController : Controller
+    {
+        [HttpPut("modificarProducto")]
+        public IActionResult ModificarProducto(int id, [FromBody] productosObtener productoModificar)
+        {
+            try
+            {
+                productoData.modificarProducto(new productosObtener
+                {
+                    IdProductos = id,
+                    nombreProductos = productoModificar.nombreProductos,
+                    descripcion = productoModificar.descripcion,
+                    Precio = productoModificar.Precio,
+                    Existencia = productoModificar.Existencia,
+                    TipoProducto_Id = productoModificar.TipoProducto_Id
+                });
+                return Ok(new { mensaje = "Producto modificado exitosamente" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { mensaje = "Error al modificar el producto", error = ex.Message });
+            }
+        }
+
     }
 }

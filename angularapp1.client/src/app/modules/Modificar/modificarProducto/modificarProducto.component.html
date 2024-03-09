@@ -1,64 +1,87 @@
 <div>
-  <span>Pantalla para modificar Producto</span>
+  <h1>Pantalla para modificar Producto</h1>
 
-  <form>
-    <div class="formulario" *ngFor="let elemento of lstDatos">
-      <div class="card_global" *ngFor="let dato of productos">
-        <div class="div_cards">
-          <!--Card Nombre-->
-          <div class="card ">
-            <div class="div_titulo">
-              <p>{{elemento.dato1}}</p>
-            </div>
-            <div class="div_info">
-              <input type="text" value="{{ dato.nombreProductos}}" />
-            </div>
-          </div>
-          <!--Card Descripcion-->
-          <div class="card ">
-            <div class="div_titulo">
-              <p>{{elemento.dato2}}</p>
-            </div>
-            <div class="div_info">
-              <input type="text" value="{{ dato.descripcion }}" />
-            </div>
-          </div>
-          <!--Card precio-->
-          <div class="card ">
-            <div class="div_titulo">
-              <p class="p">{{elemento.dato3}}</p>
-            </div>
-            <div class="div_info">
-              <input value="{{ dato.precio }}" />
-            </div>
-          </div>
-          <!--Card Existencia-->
-          <div class="card">
-            <div class="div_titulo">
-              <p class="p">{{ elemento.dato4 }}</p>
-            </div>
-            <div class="div_info">
-              <input type="text" value="{{ dato.existencia }}" />
-            </div>
-          </div>
-          <!--Card Tipo de Producto-->
-          <div class="card tipoProducto">
-            <div class="div_titulo">
-              <p class="p">{{ elemento.dato5 }}</p>
-            </div>
-            <div class="div_info">
-              <input type="text" value="{{ dato.tipoProducto_Id }}" />
-            </div>
-          </div>
-        </div>
+  <form [formGroup]="formProducto">
+      <div class="formulario" *ngFor="let elemento of lstDatos">
+        <div class="card_global" *ngFor="let dato of productos">
+          <div class="div_cards">
+            <div class="divCenter">
+              <div class="divCenter2">
+                <div class="cards-superiores">
+                  <!--Card Nombre-->
+                  <div class="card ">
+                    <div class="div_titulo">
+                      <p>{{elemento.dato1}}</p>
+                    </div>
+                    <div class="div_info">
+                      <input type="text" formControlName="nombreProductos"  />
+                    </div>
+                  </div>
+                  <!--Card Descripcion-->
+                  <div class="card ">
+                    <div class="div_titulo">
+                      <p>{{elemento.dato2}}</p>
+                    </div>
+                    <div class="div_info">
+                      <input type="text" formControlName="descripcion" />
+                    </div>
+                  </div>
+                  <!--Card precio-->
+                  <div class="card ">
+                    <div class="div_titulo">
+                      <p class="p">{{elemento.dato3}}</p>
+                    </div>
+                    <div class="div_info">
+                      <input formControlName="precio" />
+                    </div>
+                  </div>
+                </div>
+                <div class="cards-superiores">
+                  <!--Card Existencia-->
+                  <div class="card">
+                    <div class="div_titulo">
+                      <p class="p">{{ elemento.dato4 }}</p>
+                    </div>
+                    <div class="div_info">
+                      <input type="text" formControlName="existencia" />
+                    </div>
+                  </div>
+                  <!--Card Tipo de Producto-->
+                  <div class="card tipoProducto">
+                    <div class="div_titulo">
+                      <p class="p">{{ elemento.dato5 }}</p>
+                    </div>
+                    <div class="div_info">
+                      <input type="text" formControlName="tipoProducto_Id" />
+                      <!--<select class="form-select input" id="inputGroupSelect01">
+                        <option selected>{{dato.tipoProducto_Id}}</option>
+                        <option value="{{dato.tipoProducto_Id}}">3</option>
+                      </select>-->
+                    </div>
+                  </div>
+                  <div class="card tipoProducto">
+                    <div class="div_titulo">
+                      <p class="p">{{elemento.dato6}}</p>
+                    </div>
+                    <div class="div_info">
+                      <input type="text" disabled value="{{dato.nombreTipoProducto}}" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="buttonGeneral">
+                <div class="div_button">
+                  <div class="div_center">
+                    <button class="btn_registrar" (click)="modificarProducto(formProducto)" type="submit">Modificar Producto</button>
+                    <button style="margin-left: 10px" class="btn_registrar" [routerLink]="['/modificar']" type="button">Regresar</button>
+                  </div>
+                </div>
+              </div>
 
-        <div class="div_button">
-          <div class="div_center">
-            <button class="btn_registrar" type="submit">Registrar Producto</button>
+            </div>
+            </div>
           </div>
-        </div>
       </div>
-    </div>
-  </form>
+</form>
 
 </div>

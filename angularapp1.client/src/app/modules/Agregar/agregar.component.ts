@@ -25,9 +25,6 @@ export class AgregarComponent {
 
   enviarDatos(form: FormGroup) {
     let producto: IProducto = form.value as IProducto;
-
-    console.log(producto)
-    console.log(producto.nombreProductos);
     //if (!isNaN(Number(producto.existencia)) && producto.existencia != null && producto.existencia !== 0)
     //{
       this.productosService.agregarProductos(producto).subscribe({

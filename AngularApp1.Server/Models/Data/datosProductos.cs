@@ -230,6 +230,8 @@ namespace data.Data
                                 descripcion = (string)dr["DescripcionProducto"],
                                 Existencia = Convert.ToInt32(dr["Existencia"]),
                                 Precio = Convert.ToInt32(dr["Precio"]),
+                                TipoProducto_Id = Convert.ToInt32(dr["IdTiposProductos"]),
+                                nombreTipoProducto = (string)dr["nombreTipoProducto"]
                             });
                         }
                     }
@@ -281,6 +283,35 @@ namespace data.Data
                     Console.WriteLine("Entro a la excepcion del busquedaProducto:" + ex);
                     Console.WriteLine(ex);
                     return oListaProducto;
+                }
+            }
+        }
+
+        public static bool modificarProducto(productosObtener productosObtener)
+        {
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                //Stored Procedure que se va a consumir
+                SqlCommand cmd = new SqlCommand("modificarProductos", oConexion);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idProducto", productosObtener.IdProductos);
+                cmd.Parameters.AddWithValue("@nombreProducto", productosObtener.nombreProductos);
+                cmd.Parameters.AddWithValue("@descripcionProducto", productosObtener.descripcion);
+                cmd.Parameters.AddWithValue("@precio", productosObtener.Precio);
+                cmd.Parameters.AddWithValue("@existencia", productosObtener.Existencia);
+                cmd.Parameters.AddWithValue("@idtiposProductos", productosObtener.TipoProducto_Id);
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine("Entro try del datosProductos al modificarProducto");
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Entro a la excepcion del busquedaProducto:" + ex);
+                    return false;
                 }
             }
         }

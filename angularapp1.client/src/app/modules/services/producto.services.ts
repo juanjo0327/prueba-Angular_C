@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, observable, Observable } from "rxjs";
+import { catchError, Observable } from "rxjs";
 import { enviroment } from "../../enviroments/enviroments";
 import { MyResponse } from "../../interfaces";
 import { IProducto } from "../Inicio/models/productos";
@@ -64,8 +64,16 @@ export class ProductosServices {
   //Aqui se consume el endPoint: https://localhost:7206/api/productos/eliminarProducto?id={id}
   eliminarProducto(id: number): Observable<any> {
     let url = `${this.api}/eliminarProducto?id=${id}`
-    return this.http.post(url, id);
+    return this.http.delete(url);
   }
 
-
+  //modificar Producto
+  //Aqui se consume el endPoint: https://localhost:7206/api/productos/modificarProducto
+  modificarProducto(producto: IProducto, id: number): Observable<any> {
+    let url = `${this.api}/modificarProducto?id=${id}`;
+    console.log(producto);
+    return this.http.put(url, {
+      ...producto
+    });
+  }
 }
