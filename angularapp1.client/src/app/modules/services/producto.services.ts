@@ -37,6 +37,14 @@ export class ProductosServices {
     );
   }
 
+  //Obtener Tipo Producto ID
+  //Aqui consule el endPoint: https://localhost:7206/api/productos/obtenerTipoProductoId
+  obtenerTipoProductoId(): Observable<any> {
+    let url = `${this.api}/productos/obtenerTipoProductoId`;
+    return this.http.get(url);
+  }
+
+
   //agregar Productos
   //Aqui consule el endPoint: https://localhost:7206/api/productos/agregar
   agregarProductos(producto: IProducto) {

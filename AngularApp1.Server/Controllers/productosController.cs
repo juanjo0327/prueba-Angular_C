@@ -18,6 +18,12 @@ namespace Ejemplo_prueba.Controllers
         {
             return productoData.Obtener();
         }
+
+        [HttpGet("[action]")]
+        public List<obtenerTipoProductoId> obtenerTipoProductoId()
+        {
+            return productoData.obtenerTipoProductoId();
+        }
         //Aqui inicia el metodo para Agregar los productos
         [HttpPost("[action]")]
         public ActionResult<Respuesta> agregar([FromBody] productoRegistrar model)
@@ -30,7 +36,7 @@ namespace Ejemplo_prueba.Controllers
 
                     bool resultado = productoData.agregarProductos(new productoRegistrar
                     {
-                        nombreProducto = model.nombreProducto,
+                        nombreProductos = model.nombreProductos,
                         Precio = model.Precio,
                         Descripcion = model.Descripcion,
                         TipoProducto_Id = model.TipoProducto_Id,

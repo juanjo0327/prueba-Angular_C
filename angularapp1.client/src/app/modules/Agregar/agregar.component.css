@@ -5,6 +5,7 @@ body {
 .card_global {
   width: 98%;
   height: 243px;
+  display: inline-block;
   margin-left: 10px;
   border-radius: 4px;
   background-color: rgb(230, 163, 88, 0.44);
@@ -37,23 +38,31 @@ input {
   margin-top: 10px;
 }
 
+.input {
+  width: 80%;
+  height: 35px;
+  color: black;
+  font-weight: bold;
+  border: 3px solid rgb(42, 0, 255, 0.57);
+  background-color: rgb(255, 106, 0, 0.05);
+  border-radius: 5px;
+  margin-top: 7px;
+  margin-left: 10px;
+}
+
   input::placeholder {
     color: rgb(42, 0, 255, 0.57);
   }
 
 .div_button {
-  padding-left: 10px;
-  display: grid;
-  align-content: center;
-  justify-content: start;
+  margin-left: 8px;
   height: 110px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
 
-.div_center {
-  display: grid;
-}
-
-.btn_registrar {
+.btn_registrar, .btn_limpiar {
   border: 3px solid rgb(42, 0, 255, 0.57);
   background-color: rgb(255, 106, 0, 0.05);
   border-radius: 5px;

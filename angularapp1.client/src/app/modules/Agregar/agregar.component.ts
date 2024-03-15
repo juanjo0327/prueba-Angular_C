@@ -11,46 +11,77 @@ import { ProductosServices } from '../services/producto.services';
 export class AgregarComponent {
 
   formProducto: FormGroup = this.fb.group({
-    nombreProducto: undefined,
-    descripcion: undefined,
+    nombreProductos: '',
+    descripcion: '',
     existencia: undefined,
     precio: undefined,
-    tipoProducto_Id: undefined,
+    tipoProducto_Id: 1,
+    nombreTipoProducto: '',
   })
+
+  tipoProductoId: {tipoProducto_Id: number, nombreTipoProducto: string }[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private productosService: ProductosServices) {
+    private productosService: ProductosServices)
+  {
+    this.obtenerProductos();
   }
+
+  seleccionarTipoProducto(valorSeleccionado: any) {
+    
+
+    if (valorSeleccionado !== null && valorSeleccionado !== undefined) {
+      // Encuentra el elemento seleccionado en tipoProductoId
+      console.log("Entro al primer if");
+      const elementoSeleccionado = this.tipoProductoId.find(elemento => elemento.tipoProducto_Id === valorSeleccionado);
+      // Actualiza el valor del input con el nombre del tipo de producto seleccionado
+      console.log(elementoSeleccionado?.nombreTipoProducto);
+    }
+  }
+
+
+  obtenerProductos() {
+    this.productosService.obtenerTipoProductoId().subscribe({
+      next: (result) => {
+        this.tipoProductoId = result;
+      }
+    })
+  }
+
 
   enviarDatos(form: FormGroup) {
     let producto: IProducto = form.value as IProducto;
-    //if (!isNaN(Number(producto.existencia)) && producto.existencia != null && producto.existencia !== 0)
-    //{
-      this.productosService.agregarProductos(producto).subscribe({
-        next: () => {
-          alert("Producto guardado correctamente");
-          this.formProducto = this.fb.group({
-            idProducto: [''],
-            nombreProducto: [''],
-            nombreTipoProducto: [''],
-            descripcion: [''],
-            existencia: [''],
-            precio: [''],
-            tipoProducto_Id: [''],
-          })
-        },
-        error: (error) => {
-          console.error("Error al enviar datos:", error);
-        }
-      })
-    //}
-    //else
-    //{
-      //console.log(producto.precio);
-      //alert("Error, existen campos vacios, Favor de proporcionar todos los datos.")
-      
-    //}
+
+    if (producto.nombreProductos != '' && producto.descripcion != ''
+      && producto.precio != undefined && producto.existencia != undefined
+      && producto.tipoProducto_Id != undefined && producto.precio.toString() != ''
+      && producto.existencia.toString() != '' && producto.tipoProducto_Id.toString() != '') {
+      if (producto.precio != 0 && producto.existencia != 0 && producto.tipoProducto_Id != 0) {
+        this.productosService.agregarProductos(producto).subscribe({
+          next: () => {
+            this.formProducto = this.fb.group({
+              idProducto: [''],
+              nombreProductos: [''],
+              nombreTipoProducto: [''],
+              descripcion: [''],
+              existencia: [''],
+              precio: [''],
+              tipoProducto_Id: [''],
+            })
+          },
+          error: (error) => {
+            console.error("Error al enviar datos:", error);
+          }
+        })
+      }
+      else {
+        alert("Error, los campos precio, existencia o Tipo de Producto no pueden ir en 0, favor de rectificar");
+      }
+    }
+    else {
+      alert("Error, faltan campos por llenar");
+    }
   }
 
   validarSoloDigitos(event: Event) {
@@ -69,7 +100,8 @@ export class AgregarComponent {
       dato2: "Descripción:", input2: "Teclea la Descripción",
       dato3: "Precio:", input3: "Teclea el Precio",
       dato4: "Existencia:", input4: "Teclea la Existencia",
-      dato5: "Tipo de Producto:", input5: "Teclea el IdTipoProducto"
+      dato5: "Tipo de Producto:", input5: "Teclea el IdTipoProducto",
+      dato6: "", input6:"Nombre Tipo Prod"
     }
   ]
 }
