@@ -24,12 +24,18 @@ namespace AngularApp1.Server.Models
         public class productoRegistrar
         {
             public int IdProductos { get; set; }
-            public string nombreProducto { get; set; }
+            public string nombreProductos { get; set; }
             public int Precio { get; set; }
             public string Descripcion { get; set; }
             public int TipoProducto_Id { get; set; }
             public int Existencia { get; set; }
             
+        }
+
+        public class obtenerTipoProductoId
+        {
+            public int TipoProducto_Id { get; set; }
+            public string nombreTipoProducto { get; set; }
         }
     }
 }

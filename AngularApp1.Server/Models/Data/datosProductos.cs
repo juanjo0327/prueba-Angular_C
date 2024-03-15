@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using static AngularApp1.Server.Models.Producto;
 
@@ -16,16 +17,16 @@ namespace data.Data
 {
     public class productoData
     {
-        //private string connectionString;
+        public string connectionString = null;
 
-        /*public productoData(string connectionString)
+        public productoData(string connectionString)
         {
             this.connectionString = connectionString;
-        }*/
+        }
         //Metodo Para abrir conexion
-        /*public SqlConnection abrirConexion()
+        public SqlConnection abrirConexion()
         {
-            SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion);
+            SqlConnection oConexion = new SqlConnection(connectionString);
             try
             {
                 oConexion.Open();
@@ -35,9 +36,10 @@ namespace data.Data
             {
                 Console.WriteLine($"Error al abrir la conexión: {ex.Message}");
                 return null;
+
             }
-                
-        }*/
+
+        }
         //Metodo Para cerrar conexion
         /*public void CerrarConexion(SqlConnection conexion)
         {
@@ -130,15 +132,47 @@ namespace data.Data
             }
         }
 
+        public static List<obtenerTipoProductoId> obtenerTipoProductoId()
+        {
+            List<obtenerTipoProductoId> oListaProducto = new List<obtenerTipoProductoId>();
+            string query = "SELECT IdTiposProductos, nombreTipoProducto FROM TiposProductos";
+            try
+            {
+                productoData data = new productoData(Conexion.rutaConexion);
+                data.abrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, data.abrirConexion()))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            oListaProducto.Add(new obtenerTipoProductoId()
+                            {
+                                TipoProducto_Id = Convert.ToInt32(reader["IdTiposProductos"]),
+                                nombreTipoProducto = (string)reader["nombreTipoProducto"]
+                            });
+                        }
+                    }
+                }
+                return oListaProducto;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Entro a la excepciion del obtenerTipoProductoId:");
+                Console.WriteLine(ex);
+                return oListaProducto;
+            }
+        }
+
         //Metodo para Regristrar productos en la BD
         public static bool agregarProductos(productoRegistrar productoRegistrar)
         {
-            Console.WriteLine("Nombre: -----------------", productoRegistrar.nombreProducto);
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 SqlCommand cmd = new SqlCommand("Crear_Productos", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@nombreProducto", productoRegistrar.nombreProducto);
+                cmd.Parameters.AddWithValue("@nombreProducto", productoRegistrar.nombreProductos);
                 cmd.Parameters.AddWithValue("@DescripcionProducto", productoRegistrar.Descripcion);
                 cmd.Parameters.AddWithValue("@Precio", productoRegistrar.Precio);
                 cmd.Parameters.AddWithValue("@Existencia", productoRegistrar.Existencia);
@@ -230,6 +264,8 @@ namespace data.Data
                                 descripcion = (string)dr["DescripcionProducto"],
                                 Existencia = Convert.ToInt32(dr["Existencia"]),
                                 Precio = Convert.ToInt32(dr["Precio"]),
+                                TipoProducto_Id = Convert.ToInt32(dr["IdTiposProductos"]),
+                                nombreTipoProducto = (string)dr["nombreTipoProducto"]
                             });
                         }
                     }
@@ -281,6 +317,35 @@ namespace data.Data
                     Console.WriteLine("Entro a la excepcion del busquedaProducto:" + ex);
                     Console.WriteLine(ex);
                     return oListaProducto;
+                }
+            }
+        }
+
+        public static bool modificarProducto(productosObtener productosObtener)
+        {
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                //Stored Procedure que se va a consumir
+                SqlCommand cmd = new SqlCommand("modificarProductos", oConexion);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idProducto", productosObtener.IdProductos);
+                cmd.Parameters.AddWithValue("@nombreProducto", productosObtener.nombreProductos);
+                cmd.Parameters.AddWithValue("@descripcionProducto", productosObtener.descripcion);
+                cmd.Parameters.AddWithValue("@precio", productosObtener.Precio);
+                cmd.Parameters.AddWithValue("@existencia", productosObtener.Existencia);
+                cmd.Parameters.AddWithValue("@idtiposProductos", productosObtener.TipoProducto_Id);
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    Console.WriteLine("Entro try del datosProductos al modificarProducto");
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Entro a la excepcion del busquedaProducto:" + ex);
+                    return false;
                 }
             }
         }
