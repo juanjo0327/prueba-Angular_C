@@ -47,8 +47,8 @@
           </div>
           <div class="div_info">
             <!--<input type="text" formControlName="tipoProducto_Id" (input)="validarSoloDigitos($event)" placeholder="{{ elemento.input5 }}" /><-->
-            <select formControlName="tipoProducto_Id" class="form-select input" id="inputGroupSelect01" (change)="seleccionarTipoProducto($event.target)">
-              <option *ngFor="let elemento of tipoProductoId" value="{{elemento.tipoProducto_Id}}">{{elemento.tipoProducto_Id}}</option>
+            <select formControlName="tipoProducto_Id" class="form-select input" id="inputGroupSelect01" (change)="seleccionarTipoProducto($event)">
+              <option *ngFor="let elemento of tipoProductoId"  value="{{elemento.tipoProducto_Id}}">{{elemento.tipoProducto_Id}}</option>
             </select>
           </div>
         </div>
@@ -56,11 +56,8 @@
           <div class="div_titulo">
             <p class="p">Nombre Tipo Prod</p>
           </div>
-          <div class="div_info">
-            <!--<input type="text" readonly id="nombreTipoProductoInput" value="{{elemento.nombreTipoProducto}}" /><-->
-            <select formControlName="nombreTipoProducto" class="form-select input" id="inputGroupSelect02" (change)="seleccionarTipoProducto($event)">
-              <option *ngFor="let elemento of tipoProductoId" value="{{elemento.tipoProducto_Id}}">{{elemento.nombreTipoProducto}}</option>
-            </select>
+          <div class="div_info" *ngFor="let elemento of nombreTipoProducto">
+            <input type="text" readonly id="nombreTipoProductoInput" value="{{elemento.nombreTipoProducto}}" />
           </div>
         </div>
       </div>
