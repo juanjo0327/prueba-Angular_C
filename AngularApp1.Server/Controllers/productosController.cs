@@ -20,6 +20,16 @@ namespace Ejemplo_prueba.Controllers
         }
 
         [HttpGet("[action]")]
+        public List<obtenerTipoProductoId> busquedaNombreProducto(int id)
+        {
+            Console.WriteLine(id);
+            return productoData.busquedaNombreProducto(new obtenerTipoProductoId
+            {
+                TipoProducto_Id = id
+            });
+        }
+
+        [HttpGet("[action]")]
         public List<obtenerTipoProductoId> obtenerTipoProductoId()
         {
             return productoData.obtenerTipoProductoId();

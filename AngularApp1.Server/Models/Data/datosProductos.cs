@@ -132,6 +132,37 @@ namespace data.Data
             }
         }
 
+        public static List<obtenerTipoProductoId> busquedaNombreProducto(obtenerTipoProductoId obtenertipoProductoId)
+        {
+            List<obtenerTipoProductoId> oListaProducto = new List<obtenerTipoProductoId>();
+            string query = "SELECT * FROM TiposProductos WHERE IdTiposProductos = " + obtenertipoProductoId.TipoProducto_Id;
+            try
+            {
+                productoData data = new productoData(Conexion.rutaConexion);
+                data.abrirConexion();
+                using (SqlCommand cmd = new SqlCommand(query, data.abrirConexion()))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            oListaProducto.Add(new obtenerTipoProductoId()
+                            {   
+                                TipoProducto_Id = Convert.ToInt32(reader["IdTiposProductos"]),
+                                nombreTipoProducto = (string)reader["nombreTipoProducto"]
+                            });
+                        }
+                    }
+                }
+                return oListaProducto;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Entro a la excepciion del busquedaNombreProducto:");
+                Console.WriteLine(ex);
+                return oListaProducto;
+            }
+        }
         public static List<obtenerTipoProductoId> obtenerTipoProductoId()
         {
             List<obtenerTipoProductoId> oListaProducto = new List<obtenerTipoProductoId>();

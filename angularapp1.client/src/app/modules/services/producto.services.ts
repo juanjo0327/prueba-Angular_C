@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable } from "rxjs";
 import { enviroment } from "../../enviroments/enviroments";
-import { MyResponse } from "../../interfaces";
 import { IProducto } from "../Inicio/models/productos";
 
 
@@ -52,6 +51,13 @@ export class ProductosServices {
     return this.http.post(url, {
       ...producto
     })
+  }
+
+  //busqueda Nombre Tipo Producto
+  //Aqui se consume el endPoint: https://localhost:7206/api/productos/busquedaProductos?valor=${valor}
+  obtenerNombreTipoProd(id: number): Observable<any> {
+    let url = `${this.api}/productos/busquedaNombreProducto?id=${id}`;
+    return this.http.get(url);
   }
 
   //busqueda Productos

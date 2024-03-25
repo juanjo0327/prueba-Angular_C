@@ -19,7 +19,12 @@ export class AgregarComponent {
     nombreTipoProducto: '',
   })
 
-  tipoProductoId: {tipoProducto_Id: number, nombreTipoProducto: string }[] = [];
+  tipoProductoId: { tipoProducto_Id: number }[] = [];
+  nombreTipoProducto: { nombreTipoProducto: any }[] = [{
+    nombreTipoProducto
+      :
+      "Cosas para barrer"
+}];
 
   constructor(
     private fb: FormBuilder,
@@ -32,11 +37,13 @@ export class AgregarComponent {
     
 
     if (valorSeleccionado !== null && valorSeleccionado !== undefined) {
-      // Encuentra el elemento seleccionado en tipoProductoId
-      console.log("Entro al primer if");
-      const elementoSeleccionado = this.tipoProductoId.find(elemento => elemento.tipoProducto_Id === valorSeleccionado);
-      // Actualiza el valor del input con el nombre del tipo de producto seleccionado
-      console.log(elementoSeleccionado?.nombreTipoProducto);
+      const valorSeleccionado = this.formProducto.get('tipoProducto_Id')?.value;
+      this.productosService.obtenerNombreTipoProd(valorSeleccionado).subscribe({
+        next: (result) => {
+          this.nombreTipoProducto = result;
+          console.log(this.nombreTipoProducto);
+        }
+      })
     }
   }
 
@@ -60,14 +67,15 @@ export class AgregarComponent {
       if (producto.precio != 0 && producto.existencia != 0 && producto.tipoProducto_Id != 0) {
         this.productosService.agregarProductos(producto).subscribe({
           next: () => {
+            alert("Se agrego el producto correctamente!");
             this.formProducto = this.fb.group({
               idProducto: [''],
               nombreProductos: [''],
-              nombreTipoProducto: [''],
               descripcion: [''],
               existencia: [''],
               precio: [''],
-              tipoProducto_Id: [''],
+              tipoProducto_Id: [1],
+              nombreTipoProducto: ["Cosas para barrer"],
             })
           },
           error: (error) => {
