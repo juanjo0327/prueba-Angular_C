@@ -3,6 +3,7 @@ body {
 }
 
 .card_global {
+  width: 98%;
   height: 300px;
   margin-left: 10px;
   border-radius: 4px;
@@ -36,6 +37,7 @@ body {
   background-color: rgb(255, 106, 0, 0.05)
 }
 
+
 p {
   font-weight: bold;
 }
@@ -59,6 +61,7 @@ input {
   background-color: rgb(255, 106, 0, 0.05);
   border-radius: 5px;
   margin-top: 10px;
+  margin-left: 5px;
 }
 
 input::placeholder {

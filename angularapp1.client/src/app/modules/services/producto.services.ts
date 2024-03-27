@@ -54,7 +54,7 @@ export class ProductosServices {
   }
 
   //busqueda Nombre Tipo Producto
-  //Aqui se consume el endPoint: https://localhost:7206/api/productos/busquedaProductos?valor=${valor}
+  //Aqui se consume el endPoint: https://localhost:7206/api/productos/busquedaProductos?id=${id}
   obtenerNombreTipoProd(id: number): Observable<any> {
     let url = `${this.api}/productos/busquedaNombreProducto?id=${id}`;
     return this.http.get(url);
@@ -85,7 +85,6 @@ export class ProductosServices {
   //Aqui se consume el endPoint: https://localhost:7206/api/productos/modificarProducto
   modificarProducto(producto: IProducto, id: number): Observable<any> {
     let url = `${this.api}/modificarProducto?id=${id}`;
-    console.log(producto);
     return this.http.put(url, {
       ...producto
     });
