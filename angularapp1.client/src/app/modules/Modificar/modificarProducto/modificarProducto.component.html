@@ -14,7 +14,7 @@
                       <p>{{elemento.dato1}}</p>
                     </div>
                     <div class="div_info">
-                      <input type="text" formControlName="nombreProductos"  />
+                      <input type="text" formControlName="nombreProductos" (input)="validarSoloLetras($event)"  />
                     </div>
                   </div>
                   <!--Card Descripcion-->
@@ -23,7 +23,7 @@
                       <p>{{elemento.dato2}}</p>
                     </div>
                     <div class="div_info">
-                      <input type="text" formControlName="descripcion" />
+                      <input type="text" formControlName="descripcion" (input)="validarSoloLetras($event)" />
                     </div>
                   </div>
                   <!--Card precio-->
@@ -32,7 +32,7 @@
                       <p class="p">{{elemento.dato3}}</p>
                     </div>
                     <div class="div_info">
-                      <input formControlName="precio" />
+                      <input formControlName="precio" (input)="validarSoloDigitos($event)" />
                     </div>
                   </div>
                 </div>
@@ -43,7 +43,7 @@
                       <p class="p">{{ elemento.dato4 }}</p>
                     </div>
                     <div class="div_info">
-                      <input type="text" formControlName="existencia" />
+                      <input type="text" formControlName="existencia" (input)="validarSoloDigitos($event)" />
                     </div>
                   </div>
                   <!--Card Tipo de Producto-->
@@ -52,19 +52,18 @@
                       <p class="p">{{ elemento.dato5 }}</p>
                     </div>
                     <div class="div_info">
-                      <input type="text" formControlName="tipoProducto_Id" />
-                      <!--<select class="form-select input" id="inputGroupSelect01">
-                        <option selected>{{dato.tipoProducto_Id}}</option>
-                        <option value="{{dato.tipoProducto_Id}}">3</option>
-                      </select>-->
+                      <!--<input type="text" formControlName="tipoProducto_Id" />-->
+                      <select formControlName="tipoProducto_Id" class="form-select input" id="inputGroupSelect01" (change)="seleccionarTipoProducto($event)">
+                        <option *ngFor="let elemento of tipoProductoId" value="{{elemento.tipoProducto_Id}}">{{elemento.tipoProducto_Id}}</option>
+                      </select>
                     </div>
                   </div>
                   <div class="card tipoProducto">
                     <div class="div_titulo">
                       <p class="p">{{elemento.dato6}}</p>
                     </div>
-                    <div class="div_info">
-                      <input type="text" disabled value="{{dato.nombreTipoProducto}}" />
+                    <div class="div_info" *ngFor="let elemento of nombreTipoProducto">
+                      <input class="input" type="text" readonly id="nombreTipoProductoInput" value="{{elemento.nombreTipoProducto}}" />
                     </div>
                   </div>
                 </div>

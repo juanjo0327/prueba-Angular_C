@@ -16,15 +16,13 @@ export class AgregarComponent {
     existencia: undefined,
     precio: undefined,
     tipoProducto_Id: 1,
-    nombreTipoProducto: '',
   })
 
   tipoProductoId: { tipoProducto_Id: number }[] = [];
+
   nombreTipoProducto: { nombreTipoProducto: any }[] = [{
-    nombreTipoProducto
-      :
-      "Cosas para barrer"
-}];
+    nombreTipoProducto : "Cosas para barrer"
+  }];
 
   constructor(
     private fb: FormBuilder,
@@ -34,14 +32,11 @@ export class AgregarComponent {
   }
 
   seleccionarTipoProducto(valorSeleccionado: any) {
-    
-
     if (valorSeleccionado !== null && valorSeleccionado !== undefined) {
       const valorSeleccionado = this.formProducto.get('tipoProducto_Id')?.value;
       this.productosService.obtenerNombreTipoProd(valorSeleccionado).subscribe({
         next: (result) => {
           this.nombreTipoProducto = result;
-          console.log(this.nombreTipoProducto);
         }
       })
     }
@@ -55,7 +50,6 @@ export class AgregarComponent {
       }
     })
   }
-
 
   enviarDatos(form: FormGroup) {
     let producto: IProducto = form.value as IProducto;
@@ -75,7 +69,6 @@ export class AgregarComponent {
               existencia: [''],
               precio: [''],
               tipoProducto_Id: [1],
-              nombreTipoProducto: ["Cosas para barrer"],
             })
           },
           error: (error) => {
@@ -100,6 +93,19 @@ export class AgregarComponent {
   validarSoloLetras(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     inputElement.value = inputElement.value.replace(/[^a-zA-Z\s]/g, ''); // Remover caracteres que no son letras
+  }
+
+  resetnombreTipoProd(form: FormGroup) {
+    this.formProducto = this.fb.group({
+      idProducto: [''],
+      nombreProductos: [''],
+      descripcion: [''],
+      existencia: [''],
+      precio: [''],
+      tipoProducto_Id: [1],
+    })
+
+    this.nombreTipoProducto = [{ nombreTipoProducto: "Cosas para barrer" }]
   }
 
   lstDatos: any[] = [
