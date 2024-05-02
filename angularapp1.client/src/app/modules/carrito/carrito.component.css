@@ -1,0 +1,10 @@
+.box-tienda {
+  border: 2px solid blue;
+  height: 120px;
+  width: 25%;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.cardItem{
+}

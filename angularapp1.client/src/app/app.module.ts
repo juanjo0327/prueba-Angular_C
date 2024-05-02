@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AgregarComponent } from './modules/Agregar/agregar.component';
+import { carritoComponent } from './modules/carrito/carrito.component';
 import { InicioComponent } from './modules/Inicio/Inicio.component';
 import { ModificarComponent } from './modules/Modificar/modificar.component';
 import { ModificarProducto } from './modules/Modificar/modificarProducto/modificarProducto.component';
@@ -18,6 +19,7 @@ import { ModificarProducto } from './modules/Modificar/modificarProducto/modific
     AgregarComponent,
     ModificarComponent,
     ModificarProducto,
+    carritoComponent
   ],
   imports: [
     CommonModule,

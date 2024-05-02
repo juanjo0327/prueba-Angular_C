@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { ModificarComponent } from './modules/Modificar/modificar.component';
 import { ModificarProducto } from './modules/Modificar/modificarProducto/modificarProducto.component';
+import { carritoComponent } from './modules/carrito/carrito.component';
 
 const routes: Routes =
   [
@@ -14,6 +15,7 @@ const routes: Routes =
     { path: 'modificar', component: ModificarComponent },
     { path: 'modificarProducto/:id', component: ModificarProducto },
     { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+    { path: 'carrito', component: carritoComponent},
   ];
 
 @NgModule({
