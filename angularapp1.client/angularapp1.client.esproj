@@ -31,4 +31,16 @@
   <ItemGroup>
     <None Remove="src\app\modules\Modificar\NewFolder\**" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\app\modules\modificar-eliminar\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\modules\modificar-eliminar\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\app\modules\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\modules\NewFolder\**" />
+  </ItemGroup>
 </Project>
