@@ -1,10 +1,58 @@
 .box-tienda {
   border: 2px solid blue;
-  height: 120px;
-  width: 25%;
+  height: 170px;
+  width: 15%;
   margin-left: 10px;
   border-radius: 5px;
 }
 
-.cardItem{
+.cardItem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  width: 250px;
+  height: 150px
+}
+
+.img {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 100px;
+  justify-content: center;
+}
+
+
+.menos:hover {
+  content: url('../../../assets/AssetsCarrito/menosSeleccionado.svg')
+}
+
+.mas:hover {
+  content: url('../../../assets/AssetsCarrito/masSeleccionado.svg')
+}
+
+.boton-sumar {
+  background-image: url('../../../assets/AssetsCarrito/mas.svg');
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: 2px solid white;
+}
+
+.boton-restar {
+  background-image: url('../../../assets/AssetsCarrito/menos.svg');
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: 2px solid white;
+  margin-top: 5px;
+}
+
+.boton-sumar:hover {
+  background-image: url('../../../assets/AssetsCarrito/masSeleccionado.svg');
+}
+
+.boton-restar:hover {
+  background-image: url('../../../assets/AssetsCarrito/menosSeleccionado.svg');
 }
