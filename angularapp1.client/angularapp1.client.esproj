@@ -12,6 +12,7 @@
     <Folder Include="src\app\modules\Inicio\models\" />
     <Folder Include="src\app\modules\services\" />
     <Folder Include="src\app\enviroments\" />
+    <Folder Include="src\assets\NewFolder\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptConfiguration Remove="src\app\NewFolder1\**" />

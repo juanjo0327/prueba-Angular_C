@@ -1,6 +1,6 @@
 <h1>Carrito</h1>
 
-<div style="display:flex; justify-content:center">
+<!--<div style="display:flex; justify-content:center">
   <div class="box-tienda">
     <div class="cardItem" style="border: 1px solid green; display: flex">
       <div style="border: 1px solid black; width: 50%">
@@ -11,8 +11,43 @@
       </div>
     </div>
     <div>
-      <img resource=""/>
+      <span>imagen de articulo</span>
+    </div>
+    <div>
+      <img resource="" src="../../../assets/anadir-al-carrito.png" height="25px"/>
+    </div>
+  </div>
+
+
+  *ngFor="let elemento of datosProductos"
+</div>-->
+<div style="align-items: center; display: flex; justify-content: center;">
+  <div class="row row-cols-1 row-cols-md-3 g-6" style="width: 80%; display: flex;">
+    <div class="col" *ngFor="let elemento of datosProductos" style="margin-top: 15px">
+      <div class="card cardItem">
+        <div class="card-body" style="flex: 1;">
+          <div style="height: 90px">
+            <h5 class="card-title">{{elemento.nombre}}</h5>
+            <p class="card-text">{{elemento.descripcion}}</p>
+          </div>
+          <div>
+            <div style="display: inline; margin-left: 8px;">
+              <button class="boton-restar" (click)="restar(elemento)">
+              </button>
+            </div>
+            <div style="display: inline; margin-left: 8px; ">
+              <span id="numero" style="display:inline;">5</span>
+            </div>
+            <div style="display: inline; margin-left: 8px">
+              <button class="boton-sumar" (click)="sumar(elemento)">
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="img">
+          <img src="{{elemento.src}}" alt="Error al cargar la imagen" height="100px" width="80px">
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
