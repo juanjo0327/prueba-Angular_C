@@ -21,6 +21,13 @@
   justify-content: center;
 }
 
+.div-carrito {
+  display: flex;
+  width: 10%;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .menos:hover {
   content: url('../../../assets/AssetsCarrito/menosSeleccionado.svg')
@@ -30,8 +37,22 @@
   content: url('../../../assets/AssetsCarrito/masSeleccionado.svg')
 }
 
+.carrito:hover{
+   content: url('../../../assets/AssetsCarrito/CarritoSeleccionado.svg');
+   cursor: pointer;
+}
+
 .boton-sumar {
   background-image: url('../../../assets/AssetsCarrito/mas.svg');
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: 2px solid white;
+}
+
+.boton-agregarCarrito {
+  background-image: url('../../../assets/AssetsCarrito/carritoMas.svg');
   width: 20px;
   height: 20px;
   background-repeat: no-repeat;
@@ -55,4 +76,8 @@
 
 .boton-restar:hover {
   background-image: url('../../../assets/AssetsCarrito/menosSeleccionado.svg');
+}
+
+.boton-agregarCarrito:hover {
+  background-image: url('../../../assets/AssetsCarrito/carritoMasSeleccionado.svg');
 }
