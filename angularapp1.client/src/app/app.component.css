@@ -20,3 +20,13 @@ th, td {
 table {
     margin: 0 auto;
 }
+
+
+
+
+.select#obtener:active,
+.select#agregar:active,
+.select#modificar:active,
+#carrito:active {
+  background-color: #ff6a00
+}
