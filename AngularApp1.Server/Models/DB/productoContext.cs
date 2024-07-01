@@ -8,5 +8,5 @@ namespace Ejemplo_prueba.Models.DB;
 public partial class Conexion
 {
     //Conexion a la BD
-    public static string rutaConexion = "Data Source=230465L90168233\\SQLEXPRESS02;Initial Catalog=productos;Integrated Security=True;TrustServerCertificate=true;";
+    public static string rutaConexion = "Data Source=230465L90168233\\SQLEXPRESS;Initial Catalog=productos;Integrated Security=True;TrustServerCertificate=true;";
 }

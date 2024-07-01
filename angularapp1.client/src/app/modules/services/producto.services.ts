@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { enviroment } from "../../enviroments/enviroments";
 import { IProducto } from "../Inicio/models/productos";
 
@@ -29,10 +29,10 @@ export class ProductosServices {
     let url = `${this.api}/productos`;
 
     return this.http.get<IProducto[]>(url).pipe(
-      catchError((error: any) => {
+      /*catchError((error: any) => {
         console.error("Error al obtener productos:", error);
         throw error;
-      })
+      })*/
     );
   }
 

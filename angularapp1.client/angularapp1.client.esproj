@@ -44,4 +44,10 @@
   <ItemGroup>
     <None Remove="src\app\modules\NewFolder\**" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptConfiguration Remove="src\assets\NewFolder\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\assets\NewFolder\**" />
+  </ItemGroup>
 </Project>
