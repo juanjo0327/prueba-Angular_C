@@ -1,43 +1,49 @@
 <div style="display: inline-flex; width: 78%;">
-  <div style="width: 90%">
+  <div style="width: 85%;">
     <h1>Carrito</h1>
   </div>
-  <div class="div-carrito">
-    <img class="carrito" src="../../../assets/AssetsCarrito/Carrito.svg" width="25px" height="25px">
+  <div class="div-bolsa">
+    <img src="../../../assets/AssetsCarrito/bolsa.svg" width="25px" height="25px">
+    <span class="cantidad" id="cantidadbolsa">0</span>
   </div>
 </div>
 
 <div style="align-items: center; display: flex; justify-content: center;">
-  <div class="row row-cols-1 row-cols-md-3 g-6" style="width: 80%; display: flex;">
+  <div class="row row-cols-md-3 g-6" style="width: 60%; display: flex;">
     <div class="col" *ngFor="let elemento of datosProductos" style="margin-top: 15px">
-      <div class="card cardItem">
-        <div class="card-body" style="flex: 1;">
-          <div style="height: 90px">
-            <h5 class="card-title">{{elemento.nombre}}</h5>
-            <p class="card-text">{{elemento.descripcion}}</p>
+      <form [formGroup]="formCarrito">
+        <div class="card cardItem">
+          <div class="card-body" style="flex: 1;">
+            <div style="height: 90px">
+              <h5 class="card-title">{{elemento.nombre}}</h5>
+              <p class="card-text">{{elemento.descripcion}}</p>
+            </div>
+            <div>
+              <!--Imagen Carrito-->
+              <div class="restar" style="display: inline-block; margin-left: 8px; vertical-align: middle; ">
+                <button class="boton-restar" (click)="restar(elemento)">
+                </button>
+              </div>
+              <div class="numero" style="display: inline-block; margin-left: 8px; vertical-align: bottom; ">
+                <span id="numero-{{elemento.id}}">1</span>
+              </div>
+              <!--Imagen Sumar-->
+              <div class="sumar" style="display: inline-block; margin-left: 8px; vertical-align: bottom; ">
+                <button class="boton-sumar" (click)="sumar(elemento)">
+                </button>
+              </div>
+              <!--Imagen Carrito-->
+              <div class="sumar" style="display: inline-block; margin-left: 8px; vertical-align: middle; ">
+                <button class="boton-agregarCarrito" (click)="agregarCarrito(elemento)">
+                </button>
+              </div>
+            </div>
           </div>
-          <div>
-            <div class="restar" style="display: inline-block; margin-left: 8px; vertical-align: middle; ">
-              <button class="boton-restar" (click)="restar(elemento)">
-              </button>
-            </div>
-            <div class="numero" style="display: inline-block; margin-left: 8px; vertical-align: bottom; ">
-              <span id="numero">5</span>
-            </div>
-            <div class="sumar" style="display: inline-block; margin-left: 8px; vertical-align: middle; ">
-              <button class="boton-sumar" (click)="sumar(elemento)">
-              </button>
-            </div>
-            <div class="sumar" style="display: inline-block; margin-left: 8px; vertical-align: middle; ">
-              <button class="boton-agregarCarrito" (click)="sumar(elemento)">
-              </button>
-            </div>
+          <div class="img">
+            <img src="{{elemento.src}}" alt="Error al cargar la imagen" height="100px" width="80px">
           </div>
         </div>
-        <div class="img">
-          <img src="{{elemento.src}}" alt="Error al cargar la imagen" height="100px" width="80px">
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

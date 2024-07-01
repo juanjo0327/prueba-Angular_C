@@ -35,7 +35,7 @@ export class ModificarProducto {
   ) {this.obtenerProductos()}
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params: { [x: string]: number; }) => {
       this.id = params['id']; // Convierte el parámetro id a número
       this.obtenerDatos(this.id);
     });
@@ -116,7 +116,7 @@ export class ModificarProducto {
       dato3: "Precio:", input3: "Teclea el Precio",
       dato4: "Existencia:", input4: "Teclea la Existencia",
       dato5: "Tipo de Producto:", input5: "Teclea el IdTipoProducto",
-      dato6: "Nombre de TipoProducto:", input6: "Teclea el IdTipoProducto"
+      dato6: "Nombre TipoProducto:", input6: "Teclea el IdTipoProducto"
     }
   ]
 }

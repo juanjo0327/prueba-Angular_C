@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@angular/http": "^7.2.16"
+  }
+}

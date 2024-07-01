@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IProducto } from '../Inicio/models/productos';
 import { ProductosServices } from '../services/producto.services';
 
+
+
+
 @Component({
   selector: 'modificar',
   templateUrl: './modificar.component.html',
@@ -14,8 +17,8 @@ export class ModificarComponent {
   productos: IProducto[] = [];
   constructor(
     private productosService: ProductosServices) {
-      this.buscarEnTiempoReal();
-    }
+    this.buscarEnTiempoReal();
+  }
 
   buscarEnTiempoReal() {
     this.productosService.busquedaProducto(this.busquedaId, this.busquedaNombre).subscribe({
@@ -23,7 +26,7 @@ export class ModificarComponent {
         this.productos = result;
 
       }
-    })
+    });
   }
 
   eliminarProducto(id: number) {
@@ -32,7 +35,7 @@ export class ModificarComponent {
         this.productos = result;
         alert("Producto Eliminado Correctamente");
       }
-    })
+    });
   }
 
   validarSoloDigitos(event: Event) {

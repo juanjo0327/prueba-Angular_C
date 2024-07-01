@@ -71,7 +71,7 @@ export class AgregarComponent {
               tipoProducto_Id: [1],
             })
           },
-          error: (error) => {
+          error: (error: any) => {
             console.error("Error al enviar datos:", error);
           }
         })
