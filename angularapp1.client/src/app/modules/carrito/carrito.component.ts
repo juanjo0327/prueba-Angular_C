@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,28 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 
 export class carritoComponent {
+
+  @ViewChild('popoverTrigger') popoverTrigger: ElementRef | undefined;
+  @ViewChild('popover') popoverElement: ElementRef | undefined;
+
+  showPopover = false;
+
+  togglePopover() {
+    this.showPopover = !this.showPopover;
+    if (this.showPopover) {
+      this.positionPopover();
+    }
+  }
+
+  positionPopover() {
+    const triggerRect = this.popoverTrigger?.nativeElement.getBoundingClientRect();
+    const popoverRect = this.popoverElement?.nativeElement.getBoundingClientRect();
+    const offsetX = triggerRect.left + triggerRect.width / 2 - popoverRect.width / 2;
+    const offsetY = triggerRect.top + triggerRect.height - popoverRect.height;
+    //this.popoverElement.nativeElement.style.left= `${offsetX}px` ?? 'initial';
+    //this.popoverTrigger.nativeElement.style.left = `${offsetX}px`;
+    //this.popoverElement.nativeElement.style.top = `${offsetY}px`;
+  }
 
   lstDatos: any[] = [
     {
@@ -94,6 +116,7 @@ export class carritoComponent {
         }
       }
     }
-
   }
+
+
 }
