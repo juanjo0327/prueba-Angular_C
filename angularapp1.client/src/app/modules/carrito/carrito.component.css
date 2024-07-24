@@ -87,14 +87,25 @@
   width: 10%;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
 }
 
 .cantidad {
   font-weight: bold;
   font-size: 14px;
   position: absolute;
-  top: 115px;
+  top: 113px;
+  left: 1553px;
 }
 
+.cantidad:hover{
+    cursor: pointer;
+}
 
+.popOver {
+  background-image: url(../../../assets/AssetsCarrito/bolsa.svg);
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: white;
+}
