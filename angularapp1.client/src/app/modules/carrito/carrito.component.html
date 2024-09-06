@@ -2,57 +2,78 @@
   <div style="width: 85%;">
     <h1>Carrito</h1>
   </div>
-  <div class="div-bolsa">
-    <button id="popoverTrigger" class="popOver">
-      0
-    </button>
-    <div id="popover" class="popover">
-      <div class="popover-header">Popover Title</div>
-      <div class="popover-body">Popover content goes here.</div>
-      <div class="popover-footer">
-        <button id="closeButton">Close</button>
-      </div>
-    </div>
-    <!--<span class="cantidad" id="cantidadbolsa">0</span><-->
-  </div>
 </div>
 
-<div style="align-items: center; display: flex; justify-content: center;">
-  <div class="row row-cols-md-3 g-6" style="width: 60%; display: flex;">
-    <div class="col" *ngFor="let elemento of datosProductos" style="margin-top: 15px">
-      <form [formGroup]="formCarrito">
-        <div class="card cardItem">
-          <div class="card-body" style="flex: 1;">
-            <div style="height: 90px">
-              <h5 class="card-title">{{elemento.nombre}}</h5>
-              <p class="card-text">{{elemento.descripcion}}</p>
+<div style="display: flex">
+  <div style=" width: 60%; display: flex; justify-content: center">
+    <div style="width: 90%;">
+      <div class="row row-cols-md-2 g-6">
+        <div class="col" *ngFor="let elemento of datosProductos" style="margin-top: 15px">
+          <form [formGroup]="formCarrito">
+            <div class="card cardItem">
+              <div class="card-body" style="flex: 1;">
+                <div style="height: 90px">
+                  <h5 class="card-title">{{elemento.nombre}}</h5>
+                  <p class="card-text">{{elemento.descripcion}}</p>
+                </div>
+                <div>
+                  <!--Imagen Carrito-->
+                  <div class="restar" style="display: inline-block; margin-left: 8px; vertical-align: middle; ">
+                    <button class="boton-restar" (click)="restar(elemento)">
+                    </button>
+                  </div>
+                  <div class="numero" style="display: inline-block; margin-left: 8px; vertical-align: bottom; ">
+                    <span id="numero-{{elemento.id}}">1</span>
+                  </div>
+                  <!--Imagen Sumar-->
+                  <div class="sumar" style="display: inline-block; margin-left: 8px; vertical-align: bottom; ">
+                    <button class="boton-sumar" (click)="sumar(elemento)">
+                    </button>
+                  </div>
+                  <!--Imagen Carrito-->
+                  <div class="sumar" style="display: inline-block; margin-left: 8px; vertical-align: middle; ">
+                    <button class="boton-agregarCarrito" (click)="agregarCarrito(elemento)">
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="img">
+                <img src="{{elemento.src}}" alt="Error al cargar la imagen" height="100px" width="80px">
+              </div>
             </div>
-            <div>
-              <!--Imagen Carrito-->
-              <div class="restar" style="display: inline-block; margin-left: 8px; vertical-align: middle; ">
-                <button class="boton-restar" (click)="restar(elemento)">
-                </button>
-              </div>
-              <div class="numero" style="display: inline-block; margin-left: 8px; vertical-align: bottom; ">
-                <span id="numero-{{elemento.id}}">1</span>
-              </div>
-              <!--Imagen Sumar-->
-              <div class="sumar" style="display: inline-block; margin-left: 8px; vertical-align: bottom; ">
-                <button class="boton-sumar" (click)="sumar(elemento)">
-                </button>
-              </div>
-              <!--Imagen Carrito-->
-              <div class="sumar" style="display: inline-block; margin-left: 8px; vertical-align: middle; ">
-                <button class="boton-agregarCarrito" (click)="agregarCarrito(elemento)">
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="img">
-            <img src="{{elemento.src}}" alt="Error al cargar la imagen" height="100px" width="80px">
-          </div>
+          </form>
         </div>
-      </form>
+      </div>
+    </div>
+  </div>
+  <div style="width: 40%">
+    <div style="width: 500px; height: 50px; display: flex;">
+      <div class="div-Inicio">
+        imagen
+      </div>
+      <div class="div-central">
+        Nombre
+      </div>
+      <div class="div-central">
+        cantidad
+      </div>
+      <div class="div-final">
+        precio
+      </div>
+    </div>
+    <div style="width: 500px; height: 50px; display: flex">
+      <div style="width: 25%; align-content: center">
+        imagen
+      </div>
+      <div style="width: 25%; align-content: center ">
+        Articulo
+      </div>
+      <div style="width: 25%; align-content: center">
+        cantidad
+      </div>
+      <div style="width: 25%; align-content: center ">
+        precio
+      </div>
     </div>
   </div>
 </div>

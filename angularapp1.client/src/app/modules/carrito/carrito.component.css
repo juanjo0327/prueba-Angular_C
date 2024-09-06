@@ -101,11 +101,28 @@
     cursor: pointer;
 }
 
-.popOver {
-  background-image: url(../../../assets/AssetsCarrito/bolsa.svg);
-  background-repeat: no-repeat;
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: white;
+.div-Inicio {
+  border: 1px solid black;
+  width: 25%;
+  align-content: center;
+  border-start-start-radius: 5px;
+  border-end-start-radius: 5px;
+}
+
+.div-central {
+  width: 25%;
+  align-content: center;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.div-final {
+  width: 25%;
+  align-content: center;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-start-end-radius: 5px;
+  border-end-end-radius: 5px;
 }
